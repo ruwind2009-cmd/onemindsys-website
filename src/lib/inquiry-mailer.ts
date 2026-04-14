@@ -104,7 +104,7 @@ function getTransporter() {
 }
 
 function buildInternalSubject(payload: InquiryPayload, inquiryId: string) {
-  return `[${inquiryId}] New Inquiry from ${payload.fullName}`
+  return `[${inquiryId}] New Project Inquiry from ${payload.fullName}`
 }
 
 function buildAcknowledgmentSubject(inquiryId: string) {
@@ -114,7 +114,7 @@ function buildAcknowledgmentSubject(inquiryId: string) {
 function buildInternalText(payload: InquiryPayload, meta: InquiryMeta) {
   return [
     'ONEMIND SYSTEMS',
-    'New website inquiry received.',
+    'New project inquiry received.',
     '',
     `Inquiry ID: ${meta.inquiryId}`,
     `Submitted At: ${meta.submittedAtLabel}`,
@@ -124,8 +124,19 @@ function buildInternalText(payload: InquiryPayload, meta: InquiryMeta) {
     `Company: ${textOrDash(payload.company)}`,
     `Email: ${payload.email}`,
     `Country: ${textOrDash(payload.country)}`,
+    `Phone: ${textOrDash(payload.phone)}`,
     '',
-    'Message',
+    'Project Details',
+    `Project Name: ${textOrDash(payload.projectName)}`,
+    `Sector: ${textOrDash(payload.sector)}`,
+    `Total Project Size: ${textOrDash(payload.totalProjectSize)}`,
+    `Project Stage: ${textOrDash(payload.projectStage)}`,
+    `Government Support Documents: ${textOrDash(payload.governmentSupportAvailable)}`,
+    `Repayment Source: ${textOrDash(payload.repaymentSource)}`,
+    `Sponsor Equity Available: ${textOrDash(payload.sponsorEquityAvailable)}`,
+    `Documents Ready: ${textOrDash(payload.documentsReady)}`,
+    '',
+    'Project Summary',
     payload.message,
     '',
     'Submission Metadata',
@@ -145,6 +156,15 @@ function buildInternalHtml(payload: InquiryPayload, meta: InquiryMeta) {
     ['Company', textOrDash(payload.company)],
     ['Email', payload.email],
     ['Country', textOrDash(payload.country)],
+    ['Phone', textOrDash(payload.phone)],
+    ['Project Name', textOrDash(payload.projectName)],
+    ['Sector', textOrDash(payload.sector)],
+    ['Total Project Size', textOrDash(payload.totalProjectSize)],
+    ['Project Stage', textOrDash(payload.projectStage)],
+    ['Government Support Documents', textOrDash(payload.governmentSupportAvailable)],
+    ['Repayment Source', textOrDash(payload.repaymentSource)],
+    ['Sponsor Equity Available', textOrDash(payload.sponsorEquityAvailable)],
+    ['Documents Ready', textOrDash(payload.documentsReady)],
     ['Source Page', textOrDash(payload.sourcePage)],
     ['Locale', textOrDash(payload.locale)],
     ['Referrer', textOrDash(payload.referrer)],
@@ -178,7 +198,7 @@ function buildInternalHtml(payload: InquiryPayload, meta: InquiryMeta) {
             </tbody>
           </table>
           <div style="margin-top:24px;">
-            <div style="font-size:13px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.08em;">Message</div>
+            <div style="font-size:13px;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:0.08em;">Project Summary</div>
             <div style="margin-top:10px;padding:18px;border:1px solid #e2e8f0;border-radius:14px;background:#f8fafc;font-size:14px;line-height:1.7;color:#0f172a;">
               ${formatMultilineHtml(payload.message)}
             </div>
@@ -196,14 +216,14 @@ function buildAcknowledgmentText(payload: InquiryPayload, meta: InquiryMeta) {
   return [
     `Dear ${payload.fullName},`,
     '',
-    'Thank you for contacting ONEMIND SYSTEMS.',
+    'Thank you for submitting your project inquiry to ONEMIND SYSTEMS.',
     '',
-    'Your inquiry has been received and is currently under review by our team.',
+    'Your inquiry has been received and is currently under preliminary review by our team.',
     '',
     `Inquiry ID: ${meta.inquiryId}`,
     `Submitted At: ${meta.submittedAtLabel}`,
     '',
-    'A member of our team will review your request and respond within a reasonable timeframe.',
+    'If the project appears suitable for deeper review, a member of our team will follow up within a reasonable timeframe.',
     'If you need to add information, please reply to this email and reference the Inquiry ID above.',
     '',
     'Regards,',
@@ -223,10 +243,10 @@ function buildAcknowledgmentHtml(payload: InquiryPayload, meta: InquiryMeta) {
         <div style="padding:28px;">
           <p style="margin:0 0 14px;font-size:15px;line-height:1.8;color:#0f172a;">Dear ${escapeHtml(payload.fullName)},</p>
           <p style="margin:0 0 14px;font-size:15px;line-height:1.8;color:#334155;">
-            Thank you for contacting ONEMIND SYSTEMS.
+            Thank you for submitting your project inquiry to ONEMIND SYSTEMS.
           </p>
           <p style="margin:0 0 18px;font-size:15px;line-height:1.8;color:#334155;">
-            Your inquiry has been received and is currently under review by our team.
+            Your inquiry has been received and is currently under preliminary review by our team.
           </p>
           <div style="padding:18px 20px;border:1px solid #e2e8f0;border-radius:14px;background:#f8fafc;">
             <div style="font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#64748b;font-weight:700;">Inquiry Reference</div>
@@ -234,7 +254,7 @@ function buildAcknowledgmentHtml(payload: InquiryPayload, meta: InquiryMeta) {
             <div style="margin-top:8px;font-size:14px;color:#475569;">Submitted At: ${escapeHtml(meta.submittedAtLabel)}</div>
           </div>
           <p style="margin:18px 0 0;font-size:15px;line-height:1.8;color:#334155;">
-            A member of our team will review your request and respond within a reasonable timeframe.
+            If the project appears suitable for deeper review, a member of our team will follow up within a reasonable timeframe.
             If you need to add information, please reply to this email and reference the Inquiry ID above.
           </p>
           <p style="margin:22px 0 0;font-size:15px;line-height:1.8;color:#334155;">

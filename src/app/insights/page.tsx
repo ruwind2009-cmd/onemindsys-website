@@ -1,24 +1,20 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { insights } from '@/lib/site-content'
+import { buildPageMetadata } from '@/lib/site-metadata'
 
-export const metadata: Metadata = {
-  title: 'Insights — ONEMIND',
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Insights',
   description:
-    'Short project insights and perspectives on where power infrastructure projects get stuck or need better structure.',
+    'Brief perspectives on project bankability, infrastructure financing readiness, and the transaction issues that cause serious projects to stall.',
+  path: '/insights',
   keywords: [
-    'project insights',
-    'project perspectives',
-    'power infrastructure',
-    'project readiness',
-    'execution constraints',
+    'project finance insights',
+    'bankability perspectives',
+    'infrastructure financing readiness',
+    'transaction advisory insights',
   ],
-  openGraph: {
-    title: 'Insights — ONEMIND',
-    description: 'Short insights and perspectives on where projects lose structure, readiness, or execution momentum.',
-    type: 'website',
-  },
-}
+})
 
 export default function InsightsPage() {
   return (
@@ -28,7 +24,7 @@ export default function InsightsPage() {
           <div className="sec-label">Insights</div>
           <h1 className="page-title page-title--feature">Project Insights and Perspectives</h1>
           <p className="page-subtitle">
-            Short project insights built for fast judgment, not long reading.
+            Short perspectives on bankability, structure, and the practical reasons infrastructure transactions lose momentum.
           </p>
         </div>
 

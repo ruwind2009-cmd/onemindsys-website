@@ -1,130 +1,118 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { InquiryForm } from '@/components/forms/InquiryForm'
-import { PageHeroMedia } from '@/components/media/PageHeroMedia'
+import { ActionBanner, AdvisoryHero, DisclosureNotice, SectionHeading } from '@/components/site/AdvisoryPrimitives'
+import { buildPageMetadata } from '@/lib/site-metadata'
 
-const SUPPORT_PATHS = [
-  { title: 'Project structuring', desc: 'Used when the project path is still unclear.' },
-  { title: 'Financing readiness', desc: 'Used when funding conversations cannot yet move forward.' },
-  { title: 'Delivery support', desc: 'Used when the project needs execution-aware planning.' },
+const INTAKE_CRITERIA = [
+  'Defined sponsor and operating company information',
+  'Clear project sector, stage, and total capital requirement',
+  'Visibility on repayment source and sponsor equity position',
+  'Government support documentation where relevant to the structure',
 ]
 
-export const metadata: Metadata = {
-  title: 'Contact — ONEMIND',
+const WHAT_HAPPENS_NEXT = [
+  'Initial screening for fit, completeness, and seriousness',
+  'Assessment of missing documentation or structural weaknesses',
+  'Follow-up only where the project appears suitable for disciplined review',
+]
+
+const FORM_NOTICE = [
+  'The inquiry form is intended for project pre-qualification, not for general public fundraising requests.',
+  'Submitting the form does not create a funding commitment, mandate, or advisory engagement.',
+  'Please do not rely on the website as a guarantee of financing outcome or capital availability.',
+]
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Project Inquiry and Pre-Qualification',
   description:
-    'Contact ONEMIND about a power-intensive project.',
+    'Submit a qualified infrastructure or energy project for preliminary review by ONEMIND through a structured pre-qualification intake.',
+  path: '/support',
   keywords: [
-    'contact ONEMIND',
-    'power infrastructure',
-    'project structuring',
-    'financing readiness',
-    'contact ONEMIND',
+    'project inquiry',
+    'project pre-qualification',
+    'infrastructure financing inquiry',
+    'government-backed project intake',
+    'funding readiness review',
   ],
-  openGraph: {
-    title: 'Contact — ONEMIND',
-    description: 'Discuss a power-intensive project with ONEMIND.',
-    type: 'website',
-  },
-}
+})
 
 export default function SupportPage() {
   return (
-    <div className="page-shell page-shell--quiet">
-      <div className="page-container">
-        <PageHeroMedia
-          eyebrow="Contact"
-          title="Discuss Your Project"
-          description="Start with the project context, the constraint, and the next decision that needs to be made."
+    <div className="institutional-shell">
+      <div className="institutional-container">
+        <AdvisoryHero
+          eyebrow="Project Inquiry"
+          title="Pre-qualification intake for serious project sponsors."
+          description="This page is designed as a structured inquiry for government-backed infrastructure and energy projects that may be suitable for financing structure review."
           scene="support"
-          imageAlt="Low-interference support visual showing project intake and infrastructure planning."
-          tags={['Power Infrastructure', 'Project Readiness', 'Contact']}
-          variant="quiet"
-          muted
+          imageAlt="Industrial power site with utility links used to represent structured project intake."
+          tags={['Project Inquiry', 'Sponsor Screening', 'Documentation Review']}
+          primaryAction={{ href: '#inquiry-form', label: 'Start Project Inquiry' }}
+          secondaryAction={{ href: '/pre-qualification', label: 'Review Qualification Criteria' }}
+          details={[
+            { label: 'Use this page for', value: 'Qualified project intake and sponsor pre-screening' },
+            { label: 'Not for', value: 'Generic introductions or capital promises' },
+            { label: 'Review basis', value: 'Due diligence, compliance, and documentary completeness' },
+          ]}
         />
 
-        <div className="page-section grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
-          <div className="grid gap-5">
-            <div className="card-base card-role-info card-panel">
-              <div className="card-kicker">Start with a short conversation</div>
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
-                We typically begin with a brief discussion to understand your project context before suggesting any next steps.
-              </p>
-            </div>
+        <section className="institutional-section">
+          <div className="institutional-split">
+            <div className="institutional-grid institutional-grid--stack">
+              <div className="institutional-card institutional-card--soft">
+                <SectionHeading
+                  eyebrow="Minimum Intake Basis"
+                  title="A useful submission gives us enough signal to assess fit."
+                />
+                <div className="institutional-list">
+                  {INTAKE_CRITERIA.map((item) => (
+                    <div key={item} className="institutional-list__item">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            <div className="card-base card-role-info card-panel">
-              <div className="card-kicker">Email</div>
-              <a
-                href="mailto:contact@onemindsys.com"
-                className="mt-4 inline-block text-base font-semibold leading-7"
-                style={{ color: 'var(--color-text)' }}
-              >
-                contact@onemindsys.com
-              </a>
-              <p className="mt-3 text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
-                Prefer email first? You can also reach us directly at contact@onemindsys.com
-              </p>
+              <div className="institutional-card institutional-card--soft">
+                <SectionHeading
+                  eyebrow="What Happens Next"
+                  title="Only suitable projects move forward to the next stage."
+                />
+                <div className="institutional-list">
+                  {WHAT_HAPPENS_NEXT.map((item) => (
+                    <div key={item} className="institutional-list__item">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6 text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
+                  Prefer direct contact first? Email{' '}
+                  <a href="mailto:contact@onemindsys.com" style={{ color: 'var(--color-text)' }}>
+                    contact@onemindsys.com
+                  </a>
+                  .
+                </p>
+              </div>
             </div>
 
             <InquiryForm />
           </div>
+        </section>
 
-          <div className="grid gap-5">
-            <div className="card-base card-role-info card-panel">
-              <div className="card-kicker">What We Can Help With</div>
-              <div className="card-list">
-                {SUPPORT_PATHS.map((item) => (
-                  <div key={item.title} className="card-list-item">
-                    <div className="font-orbitron text-lg font-semibold" style={{ color: 'var(--color-text)' }}>
-                      {item.title}
-                    </div>
-                    <div className="mt-2 text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
-                      {item.desc}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <section className="institutional-section">
+          <DisclosureNotice title="Before You Submit">
+            {FORM_NOTICE.join(' ')}
+          </DisclosureNotice>
+        </section>
 
-            <div className="card-base card-role-info card-panel">
-              <div className="card-kicker">What To Send</div>
-              <div className="card-list">
-                {[
-                  'Who you are',
-                  'Where the project sits',
-                  'What the main constraint is',
-                  'What decision needs to happen next',
-                ].map((item) => (
-                  <div key={item} className="card-list-item">
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <p className="mt-5 text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
-                You can also review our{' '}
-                <Link href="/projects" style={{ color: 'var(--color-text)' }}>
-                  projects
-                </Link>{' '}
-                and our{' '}
-                <Link href="/insights" style={{ color: 'var(--color-text)' }}>
-                  project insights
-                </Link>{' '}
-                before submitting.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="page-section card-base card-role-solution page-callout">
-          <div className="page-callout-title">Start with the issue that is blocking progress.</div>
-          <div className="button-row mt-6">
-            <Link href="#inquiry-form" className="btn-primary">
-              Discuss Your Project
-            </Link>
-            <Link href="/support" className="btn-secondary">
-              Contact the Team
-            </Link>
-          </div>
-        </div>
+        <ActionBanner
+          eyebrow="Preparation"
+          title="Need to review the required materials before submitting?"
+          description="Use the documentation checklist if the project team still needs to organize core corporate, legal, technical, and funding materials."
+          primaryAction={{ href: '/documentation-checklist', label: 'Open Documentation Checklist' }}
+          secondaryAction={{ href: '/projects', label: 'View Selected Project Contexts' }}
+        />
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
-export default function ProductsPersonalRedirectPage() {
-  redirect('/capabilities')
+export default function PersonalProductsPage() {
+  redirect('/pre-qualification')
 }

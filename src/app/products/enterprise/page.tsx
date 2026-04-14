@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
-export default function ProductsEnterpriseRedirectPage() {
-  redirect('/capabilities')
+export default function EnterpriseProductsPage() {
+  redirect('/government-backed-projects')
 }

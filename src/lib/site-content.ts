@@ -68,7 +68,7 @@ export const insights: InsightArticle[] = [
     eyebrow: 'Project Perspective',
     cardLabel: 'Project Perspective',
     seenInLabel: 'Reference Frame',
-    ctaTitle: 'Discuss a Similar Project Situation',
+    ctaTitle: 'Submit a Comparable Project for Review',
     keywords: [
       'power infrastructure',
       'bankability',
@@ -135,13 +135,13 @@ export const insights: InsightArticle[] = [
     relatedLinks: [
       {
         href: '/support#inquiry-form',
-        label: 'Discuss Your Project',
-        description: 'Bring a similar power, financing, or advancement constraint into a structured discussion.',
+        label: 'Start Project Inquiry',
+        description: 'Bring a similar project constraint into a structured pre-qualification discussion.',
       },
       {
-        href: '/capabilities',
-        label: 'View Capabilities',
-        description: 'See how ONEMIND works on structuring, financing readiness, and project advancement.',
+        href: '/funding-structure',
+        label: 'View Funding Structure',
+        description: 'See how ONEMIND approaches structure design, documentation readiness, and execution controls.',
       },
     ],
   },
@@ -173,13 +173,13 @@ export const insights: InsightArticle[] = [
     ],
     relatedLinks: [
       {
-        href: '/capabilities',
-        label: 'View Capabilities',
+        href: '/funding-structure',
+        label: 'View Funding Structure',
         description: 'See how ONEMIND supports project structuring and readiness.',
       },
       {
         href: '/support#inquiry-form',
-        label: 'Discuss Your Project',
+        label: 'Start Project Inquiry',
         description: 'Start with the infrastructure constraint that is shaping the decision.',
       },
     ],
@@ -212,13 +212,13 @@ export const insights: InsightArticle[] = [
     ],
     relatedLinks: [
       {
-        href: '/capabilities',
-        label: 'View Capabilities',
-        description: 'Review financing enablement and project advancement support.',
+        href: '/funding-structure',
+        label: 'View Funding Structure',
+        description: 'Review project finance structuring and documentation support.',
       },
       {
         href: '/support#inquiry-form',
-        label: 'Discuss Your Project',
+        label: 'Start Project Inquiry',
         description: 'Share where the project is falling short on readiness.',
       },
     ],
@@ -251,13 +251,13 @@ export const insights: InsightArticle[] = [
     ],
     relatedLinks: [
       {
-        href: '/capabilities',
-        label: 'View Capabilities',
+        href: '/funding-structure',
+        label: 'View Funding Structure',
         description: 'See how structuring support helps projects move from concept to definition.',
       },
       {
         href: '/support#inquiry-form',
-        label: 'Discuss Your Project',
+        label: 'Start Project Inquiry',
         description: 'Start with the part of the project that is still undefined.',
       },
     ],
@@ -269,7 +269,7 @@ export const insights: InsightArticle[] = [
     excerpt: 'The project has been discussed. It has not been advanced.',
     summary: 'Projects stall when delivery pathways, sequencing, and coordination are not strong enough for execution.',
     seenIn: 'Seen in projects that have scope but no clear sequence for execution.',
-    keywords: ['execution', 'delivery support', 'project advancement'],
+    keywords: ['execution', 'project sequencing', 'project advancement'],
     sections: [
       {
         title: 'Context',
@@ -285,18 +285,18 @@ export const insights: InsightArticle[] = [
       },
       {
         title: 'How It Can Be Addressed',
-        paragraphs: ['Rebuild the next stage around sequencing, responsibilities, and practical delivery support.'],
+        paragraphs: ['Rebuild the next stage around sequencing, responsibilities, and practical execution control.'],
       },
     ],
     relatedLinks: [
       {
         href: '/projects',
         label: 'View Projects',
-        description: 'Review project contexts where advancement and delivery support matter.',
+        description: 'Review project contexts where advancement and execution control matter.',
       },
       {
         href: '/support#inquiry-form',
-        label: 'Discuss Your Project',
+        label: 'Start Project Inquiry',
         description: 'Share where the project is losing momentum.',
       },
     ],
@@ -329,13 +329,13 @@ export const insights: InsightArticle[] = [
     ],
     relatedLinks: [
       {
-        href: '/capabilities',
-        label: 'View Capabilities',
+        href: '/funding-structure',
+        label: 'View Funding Structure',
         description: 'Review where power infrastructure sits inside project structuring and advancement.',
       },
       {
         href: '/support#inquiry-form',
-        label: 'Discuss Your Project',
+        label: 'Start Project Inquiry',
         description: 'Start with the missing power condition that is blocking progress.',
       },
     ],
@@ -361,8 +361,8 @@ export const projects: ProjectEntry[] = [
       { title: 'Outcome', paragraphs: ['The experience reinforced how structure and delivery awareness affect project viability in complex markets.'] },
     ],
     relatedLinks: [
-      { href: '/capabilities', label: 'View Capabilities', description: 'See how structuring and advancement support connect to project work.' },
-      { href: '/support#inquiry-form', label: 'Discuss Your Project', description: 'Start with the market, constraint, or delivery issue that matters most.' },
+      { href: '/funding-structure', label: 'View Funding Structure', description: 'See how structure design and execution controls connect to project work.' },
+      { href: '/support#inquiry-form', label: 'Start Project Inquiry', description: 'Start with the market, constraint, or execution issue that matters most.' },
     ],
   },
   {
@@ -383,8 +383,8 @@ export const projects: ProjectEntry[] = [
       { title: 'Outcome', paragraphs: ['The experience strengthened our view that renewable projects move faster when structure and financing logic are addressed early.'] },
     ],
     relatedLinks: [
-      { href: '/capabilities', label: 'View Capabilities', description: 'See where renewable projects fit inside our capabilities model.' },
-      { href: '/support#inquiry-form', label: 'Discuss Your Project', description: 'Start with the readiness issue shaping your next stage.' },
+      { href: '/funding-structure', label: 'View Funding Structure', description: 'See where renewable projects fit inside our structuring model.' },
+      { href: '/support#inquiry-form', label: 'Start Project Inquiry', description: 'Start with the readiness issue shaping your next stage.' },
     ],
   },
   {
@@ -406,7 +406,7 @@ export const projects: ProjectEntry[] = [
     ],
     relatedLinks: [
       { href: '/projects', label: 'View Projects', description: 'Review more short project summaries across power and infrastructure contexts.' },
-      { href: '/support#inquiry-form', label: 'Discuss Your Project', description: 'Start with the reliability or execution constraint facing the project.' },
+      { href: '/support#inquiry-form', label: 'Start Project Inquiry', description: 'Start with the reliability or execution constraint facing the project.' },
     ],
   },
 ]

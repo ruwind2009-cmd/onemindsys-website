@@ -25,28 +25,50 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'ONEMIND — Power Infrastructure Partner',
-  description: 'ONEMIND supports power-intensive projects through structuring, financing readiness, and delivery advancement.',
+  title: {
+    default: 'ONEMIND | Project Finance Structuring for Government-Backed Infrastructure',
+    template: '%s | ONEMIND',
+  },
+  description:
+    'ONEMIND is a project finance structuring and capital facilitation platform for qualified government-backed infrastructure and energy projects.',
   keywords: [
     'ONEMIND',
-    'power infrastructure',
-    'project structuring',
-    'financing readiness',
-    'delivery support',
-    'project advancement',
-    'complex environments',
+    'project finance advisory',
+    'infrastructure financing',
+    'government-backed projects',
+    'structured capital solutions',
+    'project funding readiness',
+    'infrastructure investment advisory',
+    'bankable project preparation',
   ],
   openGraph: {
-    title: 'ONEMIND — Power Infrastructure Partner',
-    description: 'Power infrastructure capabilities across structuring, financing, and delivery support.',
+    title: 'ONEMIND | Project Finance Structuring for Government-Backed Infrastructure',
+    description:
+      'Institutional-grade advisory for project pre-qualification, financing structure design, documentation readiness, and controlled execution frameworks.',
     type: 'website',
     url: SITE_URL,
+    siteName: 'ONEMIND',
+    images: [
+      {
+        url: '/images/site/real/home-thermal-night.jpeg',
+        width: 1600,
+        height: 900,
+        alt: 'Institutional project finance advisory background featuring large-scale infrastructure at night.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ONEMIND | Project Finance Structuring for Government-Backed Infrastructure',
+    description:
+      'Institutional-grade advisory for project pre-qualification, financing structure design, documentation readiness, and controlled execution frameworks.',
+    images: ['/images/site/real/home-thermal-night.jpeg'],
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body>
         <Header />
         <main>{children}</main>

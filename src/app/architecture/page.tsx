@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
-export default function ArchitectureRedirectPage() {
-  redirect('/capabilities')
+export default function ArchitecturePage() {
+  redirect('/funding-structure')
 }

@@ -4,26 +4,26 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const EN_LINKS = {
-  Capabilities: [
-    { label: 'Capabilities', href: '/capabilities' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Contact', href: '/support' },
+  Advisory: [
+    { label: 'Project Pre-Qualification', href: '/pre-qualification' },
+    { label: 'Funding Structure', href: '/funding-structure' },
+    { label: 'Government-Backed Projects', href: '/government-backed-projects' },
   ],
-  Insights: [
+  Readiness: [
+    { label: 'Documentation Checklist', href: '/documentation-checklist' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Project Inquiry', href: '/support' },
+  ],
+  Additional: [
     { label: 'Insights', href: '/insights' },
-    { label: 'Project Insights', href: '/insights' },
-    { label: 'Selected Projects', href: '/projects' },
+    { label: 'About', href: '/about' },
+    { label: 'onemindsys.com', href: 'https://onemindsys.com' },
   ],
   China: [
     { label: 'Chinese Entry', href: '/zh' },
     { label: 'Chinese Solutions', href: '/zh/solutions' },
     { label: 'Cooperation Model', href: '/zh/cooperation' },
     { label: 'Chinese Insights', href: '/zh/insights' },
-  ],
-  Company: [
-    { label: 'About', href: '/about' },
-    { label: 'Capabilities', href: '/capabilities' },
-    { label: 'onemindsys.com', href: 'https://onemindsys.com' },
   ],
 }
 
@@ -73,8 +73,14 @@ export function Footer() {
             <p className="mt-4 max-w-sm text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
               {isChinesePath
                 ? 'ONEMIND 专注于构建算力与能源一体化 AI 基础设施。'
-                : 'ONEMIND is a power infrastructure partner focused on structuring, financing readiness, and project advancement.'}
+                : 'ONEMIND is a project finance structuring and capital facilitation platform for qualified government-backed infrastructure and energy projects.'}
             </p>
+            {!isChinesePath ? (
+              <p className="mt-5 max-w-sm text-sm leading-7" style={{ color: 'var(--color-text3)' }}>
+                Information on this website is for general discussion of advisory capabilities only and does not constitute a
+                funding commitment, guarantee, underwriting promise, or investment solicitation.
+              </p>
+            ) : null}
           </div>
 
           {Object.entries(links).map(([group, groupLinks]) => (
@@ -107,12 +113,14 @@ export function Footer() {
             {isChinesePath ? '。' : '.'}
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2" style={{ color: 'var(--color-text3)' }}>
-            <Link href="/support">{isChinesePath ? '联系' : 'Contact'}</Link>
-            <Link href="/capabilities">{isChinesePath ? '能力' : 'Capabilities'}</Link>
+            <Link href="/support">{isChinesePath ? '联系' : 'Project Inquiry'}</Link>
+            <Link href="/pre-qualification">{isChinesePath ? '能力' : 'Pre-Qualification'}</Link>
+            <Link href="/funding-structure">{isChinesePath ? '融资路径' : 'Funding Structure'}</Link>
+            <Link href="/documentation-checklist">{isChinesePath ? '资料清单' : 'Documentation Checklist'}</Link>
             <Link href={isChinesePath ? '/zh/insights' : '/insights'}>{isChinesePath ? '洞察' : 'Insights'}</Link>
             <Link href="/projects">{isChinesePath ? '项目' : 'Projects'}</Link>
             <Link href="/about">{isChinesePath ? '关于' : 'About'}</Link>
-            <Link href="/support#inquiry-form">{isChinesePath ? '提交需求' : 'Discuss Your Project'}</Link>
+            <Link href="/support#inquiry-form">{isChinesePath ? '提交需求' : 'Start Pre-Qualification'}</Link>
           </div>
         </div>
       </div>

@@ -4,23 +4,20 @@ import Link from 'next/link'
 import { PageHeroMedia } from '@/components/media/PageHeroMedia'
 import { SITE_PHOTOS } from '@/lib/site-photos'
 import { projects } from '@/lib/site-content'
+import { buildPageMetadata } from '@/lib/site-metadata'
 
-export const metadata: Metadata = {
-  title: 'Projects — ONEMIND',
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Selected Project Contexts',
   description:
-    'Short project summaries showing where ONEMIND has supported power infrastructure work.',
+    'Selected project contexts showing how ONEMIND approaches bankability, financing structure, and execution discipline across infrastructure and energy projects.',
+  path: '/projects',
   keywords: [
-    'projects',
-    'power infrastructure',
-    'project advancement',
-    'delivery support',
+    'project finance case studies',
+    'infrastructure project contexts',
+    'bankability examples',
+    'structured capital solutions',
   ],
-  openGraph: {
-    title: 'Projects — ONEMIND',
-    description: 'Selected power infrastructure project summaries.',
-    type: 'website',
-  },
-}
+})
 
 export default function ProjectsPage() {
   const projectScenes = {
@@ -43,11 +40,11 @@ export default function ProjectsPage() {
       <div className="page-container">
         <PageHeroMedia
           eyebrow="Projects"
-          title="Selected Projects"
-          description="Short project summaries showing where ONEMIND has supported structuring, readiness, and advancement."
+          title="Selected Project Contexts"
+          description="Illustrative project situations where structure, documentation readiness, and execution discipline shaped the financing pathway."
           scene="projects"
-          imageAlt="Project portfolio visual showing power, solar, storage, and industrial infrastructure assets."
-          tags={['Power', 'Renewable', 'Industrial']}
+          imageAlt="Project portfolio visual showing large-scale energy and industrial infrastructure assets."
+          tags={['Infrastructure', 'Energy', 'Project Finance']}
         />
 
         <div className="page-section grid gap-5 xl:grid-cols-3">
@@ -94,13 +91,13 @@ export default function ProjectsPage() {
         </div>
 
         <div className="page-section card-base card-role-solution page-callout">
-          <div className="page-callout-title">Discuss Your Project</div>
+          <div className="page-callout-title">Start Project Pre-Qualification</div>
           <div className="button-row mt-6">
             <Link href="/support#inquiry-form" className="btn-primary">
-              Discuss Your Project
+              Submit Project Inquiry
             </Link>
-            <Link href="/support" className="btn-secondary">
-              Contact the Team
+            <Link href="/documentation-checklist" className="btn-secondary">
+              Review Documentation Checklist
             </Link>
           </div>
         </div>

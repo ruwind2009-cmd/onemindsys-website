@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
-export default function DeliveryRedirectPage() {
-  redirect('/capabilities')
+export default function DeliveryPage() {
+  redirect('/documentation-checklist')
 }

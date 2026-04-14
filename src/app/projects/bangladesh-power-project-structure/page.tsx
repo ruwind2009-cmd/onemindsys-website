@@ -103,7 +103,7 @@ export default function BangladeshPowerProjectStructurePage() {
               <div
                 key={label}
                 className="rounded-[24px] border px-5 py-4"
-                style={{ borderColor: 'var(--color-border)', background: 'rgba(255,255,255,0.82)' }}
+                style={{ borderColor: 'var(--color-border)', background: 'rgba(11, 18, 31, 0.74)' }}
               >
                 <div
                   className="text-xs font-semibold uppercase tracking-[0.16em]"
@@ -248,16 +248,17 @@ export default function BangladeshPowerProjectStructurePage() {
         </div>
 
         <div className="page-section card-base card-role-solution page-callout">
-          <div className="page-callout-title">Discuss a Similar Project Situation</div>
+          <div className="page-callout-title">Submit a Comparable Project for Review</div>
           <p className="card-copy !mt-4" style={{ color: 'var(--color-text)' }}>
-            If your project depends on power infrastructure, financing structure, and coordinated advancement, ONEMIND can support the next stage of evaluation and discussion.
+            If your project involves infrastructure scale, financing structure, and government-linked counterparties, use the
+            inquiry page to start a structured suitability review.
           </p>
           <div className="button-row mt-6">
             <Link href="/support#inquiry-form" className="btn-primary">
-              Discuss Your Project
+              Start Project Inquiry
             </Link>
-            <Link href="/support" className="btn-secondary">
-              Contact the Team
+            <Link href="/pre-qualification" className="btn-secondary">
+              Review Qualification Criteria
             </Link>
           </div>
         </div>

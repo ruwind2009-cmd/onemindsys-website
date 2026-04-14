@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
-export default function DevelopersRedirectPage() {
-  redirect('/capabilities')
+export default function DevelopersPage() {
+  redirect('/documentation-checklist')
 }

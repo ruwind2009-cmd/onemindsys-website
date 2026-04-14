@@ -34,7 +34,7 @@ export default function InsightArticlePage({ params }: { params: { slug: string 
 
   const eyebrow = article.eyebrow ?? 'Insights'
   const seenInLabel = article.seenInLabel ?? 'Seen In'
-  const ctaTitle = article.ctaTitle ?? 'Discuss Your Project'
+  const ctaTitle = article.ctaTitle ?? 'Project Pre-Qualification'
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -62,7 +62,7 @@ export default function InsightArticlePage({ params }: { params: { slug: string 
           <div className="sec-label">{eyebrow}</div>
           <h1 className="page-title page-title--feature">{article.title}</h1>
           <p className="page-subtitle">{article.summary}</p>
-          <div className="mt-8 max-w-3xl rounded-[24px] border px-5 py-4" style={{ borderColor: 'var(--color-border)', background: 'rgba(255,255,255,0.82)' }}>
+          <div className="mt-8 max-w-3xl rounded-[24px] border px-5 py-4" style={{ borderColor: 'var(--color-border)', background: 'rgba(11, 18, 31, 0.74)' }}>
             <div className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: 'var(--color-text3)' }}>
               {seenInLabel}
             </div>
@@ -115,10 +115,10 @@ export default function InsightArticlePage({ params }: { params: { slug: string 
           <div className="page-callout-title">{ctaTitle}</div>
           <div className="button-row mt-6">
             <Link href="/support#inquiry-form" className="btn-primary">
-              Discuss Your Project
+              Start Project Inquiry
             </Link>
-            <Link href="/support" className="btn-secondary">
-              Contact the Team
+            <Link href="/documentation-checklist" className="btn-secondary">
+              Review Documentation Checklist
             </Link>
           </div>
         </div>

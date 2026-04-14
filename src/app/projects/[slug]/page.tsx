@@ -46,7 +46,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               ['Role Type', project.roleType],
               ['Role', project.role],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-[24px] border px-5 py-4" style={{ borderColor: 'var(--color-border)', background: 'rgba(255,255,255,0.82)' }}>
+              <div key={label} className="rounded-[24px] border px-5 py-4" style={{ borderColor: 'var(--color-border)', background: 'rgba(11, 18, 31, 0.74)' }}>
                 <div className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: 'var(--color-text3)' }}>
                   {label}
                 </div>
@@ -88,11 +88,23 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               <p className="card-copy">{link.description}</p>
               <div className="button-row card-actions">
                 <Link href={link.href} className="btn-secondary">
-                  {link.label}
+                  Open Related Page
                 </Link>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="page-section card-base card-role-solution page-callout">
+          <div className="page-callout-title">Submit a Comparable Project for Review</div>
+          <div className="button-row mt-6">
+            <Link href="/support#inquiry-form" className="btn-primary">
+              Start Project Inquiry
+            </Link>
+            <Link href="/pre-qualification" className="btn-secondary">
+              Review Qualification Criteria
+            </Link>
+          </div>
         </div>
       </div>
     </div>

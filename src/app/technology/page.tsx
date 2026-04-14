@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
 
-export default function TechnologyRedirectPage() {
-  redirect('/capabilities')
+export default function TechnologyPage() {
+  redirect('/government-backed-projects')
 }

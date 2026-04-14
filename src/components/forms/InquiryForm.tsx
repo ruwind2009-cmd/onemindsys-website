@@ -48,7 +48,7 @@ export function InquiryForm() {
     startedAt: new Date().toISOString(),
   })
 
-  const handleChange = (field: keyof InquiryPayload, value: string) => {
+  const handleChange = <K extends keyof InquiryPayload>(field: K, value: InquiryPayload[K]) => {
     setFormData((current) => ({ ...current, [field]: value }))
     setErrors((current) => ({ ...current, [field]: undefined }))
 
@@ -97,7 +97,7 @@ export function InquiryForm() {
         setSubmitFailure({
           message:
             result?.message ||
-            'We could not receive your message at this time. Please try again shortly or email contact@onemindsys.com.',
+            'We could not receive your project inquiry at this time. Please try again shortly or email contact@onemindsys.com.',
           inquiryId: result?.inquiryId,
         })
         return
@@ -118,17 +118,17 @@ export function InquiryForm() {
     } catch {
       setSubmitState('error')
       setSubmitFailure({
-        message: 'We could not receive your message at this time. Please try again shortly or email contact@onemindsys.com.',
+        message: 'We could not receive your project inquiry at this time. Please try again shortly or email contact@onemindsys.com.',
       })
     }
   }
 
   if (submitted) {
     return (
-      <div className="card-base card-role-solution card-panel h-full">
-        <div className="card-kicker">Message Received</div>
-        <h2 className="card-heading !mt-4">Your message has been received.</h2>
-        <p className="card-copy">{submitted.message}</p>
+      <div className="institutional-card institutional-card--form h-full">
+        <div className="institutional-card__eyebrow">Inquiry Received</div>
+        <h2 className="institutional-card__title mt-4">Your project inquiry has been received.</h2>
+        <p className="institutional-card__copy">{submitted.message}</p>
         <div className="mt-6 rounded-2xl border px-4 py-4" style={{ borderColor: 'var(--color-border)' }}>
           <div className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: 'var(--color-text3)' }}>
             Inquiry ID
@@ -151,10 +151,10 @@ export function InquiryForm() {
               setSubmitState('idle')
             }}
           >
-            Discuss Your Project
+            Submit Another Project
           </button>
-          <Link href="/projects" className="btn-secondary">
-            View Projects
+          <Link href="/documentation-checklist" className="btn-secondary">
+            Review Checklist
           </Link>
         </div>
       </div>
@@ -162,10 +162,13 @@ export function InquiryForm() {
   }
 
   return (
-    <form id="inquiry-form" className="card-base card-role-solution card-panel h-full" onSubmit={handleSubmit} noValidate>
-      <div className="card-kicker">Contact</div>
-      <h2 className="card-heading !mt-4">Start with the project context.</h2>
-      <p className="card-copy">Keep it short. We only need enough to understand what the project is and where it is stuck.</p>
+    <form id="inquiry-form" className="institutional-card institutional-card--form h-full" onSubmit={handleSubmit} noValidate>
+      <div className="institutional-card__eyebrow">Pre-Qualification Intake</div>
+      <h2 className="institutional-card__title mt-4">Submit project basis and sponsor readiness details.</h2>
+      <p className="institutional-card__copy">
+        The form is intentionally structured to help screen for fit, documentation readiness, and seriousness before any deeper
+        conversation begins.
+      </p>
 
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         <input
@@ -179,12 +182,12 @@ export function InquiryForm() {
 
         <div className="form-field">
           <label htmlFor="fullName" className="form-label">
-            Name
+            Full Name
           </label>
           <input
             id="fullName"
             className="form-input"
-            placeholder="Your name"
+            placeholder="Full name"
             value={formData.fullName}
             maxLength={120}
             onChange={(event) => handleChange('fullName', event.target.value)}
@@ -210,6 +213,22 @@ export function InquiryForm() {
         </div>
 
         <div className="form-field">
+          <label htmlFor="country" className="form-label">
+            Country
+          </label>
+          <input
+            id="country"
+            className="form-input"
+            placeholder="Country"
+            value={formData.country}
+            maxLength={80}
+            onChange={(event) => handleChange('country', event.target.value)}
+            aria-invalid={Boolean(errors.country)}
+          />
+          <FieldError message={errors.country} />
+        </div>
+
+        <div className="form-field">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -227,29 +246,169 @@ export function InquiryForm() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="country" className="form-label">
-            Country
+          <label htmlFor="phone" className="form-label">
+            WhatsApp / Phone
           </label>
           <input
-            id="country"
+            id="phone"
             className="form-input"
-            placeholder="Country"
-            value={formData.country}
+            placeholder="+971 ..."
+            value={formData.phone}
             maxLength={80}
-            onChange={(event) => handleChange('country', event.target.value)}
-            aria-invalid={Boolean(errors.country)}
+            onChange={(event) => handleChange('phone', event.target.value)}
+            aria-invalid={Boolean(errors.phone)}
           />
-          <FieldError message={errors.country} />
+          <FieldError message={errors.phone} />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="projectName" className="form-label">
+            Project Name
+          </label>
+          <input
+            id="projectName"
+            className="form-input"
+            placeholder="Project name"
+            value={formData.projectName}
+            maxLength={180}
+            onChange={(event) => handleChange('projectName', event.target.value)}
+            aria-invalid={Boolean(errors.projectName)}
+          />
+          <FieldError message={errors.projectName} />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="sector" className="form-label">
+            Sector
+          </label>
+          <input
+            id="sector"
+            className="form-input"
+            placeholder="Power, solar, data center, water..."
+            value={formData.sector}
+            maxLength={120}
+            onChange={(event) => handleChange('sector', event.target.value)}
+            aria-invalid={Boolean(errors.sector)}
+          />
+          <FieldError message={errors.sector} />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="totalProjectSize" className="form-label">
+            Total Project Size
+          </label>
+          <input
+            id="totalProjectSize"
+            className="form-input"
+            placeholder="USD 150 million"
+            value={formData.totalProjectSize}
+            maxLength={120}
+            onChange={(event) => handleChange('totalProjectSize', event.target.value)}
+            aria-invalid={Boolean(errors.totalProjectSize)}
+          />
+          <FieldError message={errors.totalProjectSize} />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="projectStage" className="form-label">
+            Current Project Stage
+          </label>
+          <select
+            id="projectStage"
+            className="form-input"
+            value={formData.projectStage}
+            onChange={(event) => handleChange('projectStage', event.target.value)}
+            aria-invalid={Boolean(errors.projectStage)}
+          >
+            <option value="">Select stage</option>
+            <option value="concept">Concept / early-stage structuring</option>
+            <option value="feasibility">Feasibility / development</option>
+            <option value="permitted">Permitted / approved</option>
+            <option value="procurement">Procurement / EPC coordination</option>
+            <option value="ready-for-financing">Ready for financing review</option>
+            <option value="under-negotiation">Already under financing discussion</option>
+          </select>
+          <FieldError message={errors.projectStage} />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="governmentSupportAvailable" className="form-label">
+            Government Support Documents Available?
+          </label>
+          <select
+            id="governmentSupportAvailable"
+            className="form-input"
+            value={formData.governmentSupportAvailable}
+            onChange={(event) => handleChange('governmentSupportAvailable', event.target.value)}
+            aria-invalid={Boolean(errors.governmentSupportAvailable)}
+          >
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <FieldError message={errors.governmentSupportAvailable} />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="sponsorEquityAvailable" className="form-label">
+            Existing Sponsor Equity Available?
+          </label>
+          <select
+            id="sponsorEquityAvailable"
+            className="form-input"
+            value={formData.sponsorEquityAvailable}
+            onChange={(event) => handleChange('sponsorEquityAvailable', event.target.value)}
+            aria-invalid={Boolean(errors.sponsorEquityAvailable)}
+          >
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <FieldError message={errors.sponsorEquityAvailable} />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="documentsReady" className="form-label">
+            Core Documents Ready?
+          </label>
+          <select
+            id="documentsReady"
+            className="form-input"
+            value={formData.documentsReady}
+            onChange={(event) => handleChange('documentsReady', event.target.value)}
+            aria-invalid={Boolean(errors.documentsReady)}
+          >
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <FieldError message={errors.documentsReady} />
+        </div>
+
+        <div className="form-field md:col-span-2">
+          <label htmlFor="repaymentSource" className="form-label">
+            Repayment Source
+          </label>
+          <input
+            id="repaymentSource"
+            className="form-input"
+            placeholder="PPA receivables, concession revenue, budget support..."
+            value={formData.repaymentSource}
+            maxLength={400}
+            onChange={(event) => handleChange('repaymentSource', event.target.value)}
+            aria-invalid={Boolean(errors.repaymentSource)}
+          />
+          <FieldError message={errors.repaymentSource} />
         </div>
 
         <div className="form-field md:col-span-2">
           <label htmlFor="message" className="form-label">
-            Message
+            Brief Project Summary
           </label>
           <textarea
             id="message"
             className="form-input form-textarea"
-            placeholder="What is the project, and where is it stuck?"
+            placeholder="Describe the project, current stage, counterparties, and the main structuring or financing constraint."
             value={formData.message}
             maxLength={3000}
             onChange={(event) => handleChange('message', event.target.value)}
@@ -259,25 +418,42 @@ export function InquiryForm() {
         </div>
       </div>
 
+      <div className="mt-6 rounded-[20px] border px-4 py-4" style={{ borderColor: 'var(--color-border)', background: 'rgba(255,255,255,0.03)' }}>
+        <label className="flex items-start gap-3 text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
+          <input
+            type="checkbox"
+            checked={formData.confidentialityAccepted}
+            onChange={(event) => handleChange('confidentialityAccepted', event.target.checked)}
+            className="mt-1 h-4 w-4 rounded border"
+            aria-invalid={Boolean(errors.confidentialityAccepted)}
+          />
+          <span>
+            I understand this submission is for confidential preliminary review of advisory fit only and does not constitute a
+            funding commitment, underwriting promise, or guaranteed transaction outcome.
+          </span>
+        </label>
+        <FieldError message={errors.confidentialityAccepted} />
+      </div>
+
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <button type="submit" className="btn-primary" disabled={submitState === 'submitting'}>
-          {submitState === 'submitting' ? 'Sending...' : 'Discuss Your Project'}
+          {submitState === 'submitting' ? 'Submitting...' : 'Submit Project Inquiry'}
         </button>
-        <Link href="/support" className="btn-secondary">
-          Contact the Team
+        <Link href="/documentation-checklist" className="btn-secondary">
+          Review Documentation Checklist
         </Link>
       </div>
 
       {submitFailure ? (
-        <div className="mt-4 rounded-2xl border px-4 py-4" style={{ borderColor: 'rgba(180, 83, 9, 0.26)', background: 'rgba(255, 251, 235, 0.92)' }}>
-          <div className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: '#9a3412' }}>
+        <div className="mt-4 rounded-2xl border px-4 py-4" style={{ borderColor: 'rgba(214, 178, 91, 0.26)', background: 'rgba(40, 32, 16, 0.35)' }}>
+          <div className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: '#d6b25b' }}>
             Submission Unavailable
           </div>
-          <p className="mt-2 text-sm leading-7" style={{ color: '#9a3412' }}>
+          <p className="mt-2 text-sm leading-7" style={{ color: '#f0ddae' }}>
             {submitFailure.message}
           </p>
           {submitFailure.inquiryId ? (
-            <p className="mt-2 text-sm leading-7" style={{ color: '#9a3412' }}>
+            <p className="mt-2 text-sm leading-7" style={{ color: '#f0ddae' }}>
               Inquiry ID: {submitFailure.inquiryId}
             </p>
           ) : null}
