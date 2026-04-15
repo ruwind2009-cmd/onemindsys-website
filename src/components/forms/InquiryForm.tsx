@@ -125,27 +125,27 @@ export function InquiryForm() {
 
   if (submitted) {
     return (
-      <div className="institutional-card institutional-card--form h-full">
-        <div className="institutional-card__eyebrow">Inquiry Received</div>
-        <h2 className="institutional-card__title mt-4">Your project inquiry has been received.</h2>
-        <p className="institutional-card__copy">{submitted.message}</p>
-        <div className="mt-6 rounded-2xl border px-4 py-4" style={{ borderColor: 'var(--color-border)' }}>
-          <div className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: 'var(--color-text3)' }}>
+      <div className="contact-form">
+        <div className="contact-form__eyebrow">Inquiry Received</div>
+        <h2 className="contact-form__title">Your project inquiry has been received.</h2>
+        <p className="contact-form__copy">{submitted.message}</p>
+        <div className="contact-form__status">
+          <div className="contact-form__status-label">
             Inquiry ID
           </div>
-          <div className="mt-2 text-sm leading-7" style={{ color: 'var(--color-text)' }}>
+          <div className="contact-form__status-value">
             {submitted.inquiryId}
           </div>
         </div>
         {submitted.warning ? (
-          <p className="mt-4 text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
+          <p className="contact-form__copy contact-form__copy--compact">
             {submitted.warning}
           </p>
         ) : null}
-        <div className="button-row mt-8">
+        <div className="internal-actions mt-8">
           <button
             type="button"
-            className="btn-primary"
+            className="institutional-button institutional-button--primary"
             onClick={() => {
               setSubmitted(null)
               setSubmitState('idle')
@@ -153,7 +153,7 @@ export function InquiryForm() {
           >
             Submit Another Project
           </button>
-          <Link href="/documentation-checklist" className="btn-secondary">
+          <Link href="/documentation-checklist" className="institutional-button institutional-button--secondary">
             Review Checklist
           </Link>
         </div>
@@ -162,10 +162,10 @@ export function InquiryForm() {
   }
 
   return (
-    <form id="inquiry-form" className="institutional-card institutional-card--form h-full" onSubmit={handleSubmit} noValidate>
-      <div className="institutional-card__eyebrow">Pre-Qualification Intake</div>
-      <h2 className="institutional-card__title mt-4">Submit project basis and sponsor readiness details.</h2>
-      <p className="institutional-card__copy">
+    <form id="inquiry-form" className="contact-form" onSubmit={handleSubmit} noValidate>
+      <div className="contact-form__eyebrow">Pre-Qualification Intake</div>
+      <h2 className="contact-form__title">Submit project basis and sponsor readiness details.</h2>
+      <p className="contact-form__copy">
         The form is intentionally structured to help screen for fit, documentation readiness, and seriousness before any deeper
         conversation begins.
       </p>
@@ -418,13 +418,14 @@ export function InquiryForm() {
         </div>
       </div>
 
-      <div className="mt-6 rounded-[20px] border px-4 py-4" style={{ borderColor: 'var(--color-border)', background: 'rgba(255,255,255,0.03)' }}>
-        <label className="flex items-start gap-3 text-sm leading-7" style={{ color: 'var(--color-text2)' }}>
+      <div className="contact-form__notice">
+        <label className="flex items-start gap-3 text-sm leading-7" style={{ color: '#5B6472' }}>
           <input
             type="checkbox"
             checked={formData.confidentialityAccepted}
             onChange={(event) => handleChange('confidentialityAccepted', event.target.checked)}
             className="mt-1 h-4 w-4 rounded border"
+            style={{ borderColor: '#D1D5DB', accentColor: '#1E2A38' }}
             aria-invalid={Boolean(errors.confidentialityAccepted)}
           />
           <span>
@@ -435,25 +436,25 @@ export function InquiryForm() {
         <FieldError message={errors.confidentialityAccepted} />
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center gap-4">
-        <button type="submit" className="btn-primary" disabled={submitState === 'submitting'}>
+      <div className="internal-actions mt-8">
+        <button type="submit" className="institutional-button institutional-button--primary" disabled={submitState === 'submitting'}>
           {submitState === 'submitting' ? 'Submitting...' : 'Submit Project Inquiry'}
         </button>
-        <Link href="/documentation-checklist" className="btn-secondary">
+        <Link href="/documentation-checklist" className="institutional-button institutional-button--secondary">
           Review Documentation Checklist
         </Link>
       </div>
 
       {submitFailure ? (
-        <div className="mt-4 rounded-2xl border px-4 py-4" style={{ borderColor: 'rgba(214, 178, 91, 0.26)', background: 'rgba(40, 32, 16, 0.35)' }}>
-          <div className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: '#d6b25b' }}>
+        <div className="contact-form__status mt-4">
+          <div className="contact-form__status-label">
             Submission Unavailable
           </div>
-          <p className="mt-2 text-sm leading-7" style={{ color: '#f0ddae' }}>
+          <p className="contact-form__copy contact-form__copy--compact">
             {submitFailure.message}
           </p>
           {submitFailure.inquiryId ? (
-            <p className="mt-2 text-sm leading-7" style={{ color: '#f0ddae' }}>
+            <p className="contact-form__copy contact-form__copy--compact">
               Inquiry ID: {submitFailure.inquiryId}
             </p>
           ) : null}

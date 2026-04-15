@@ -1,26 +1,19 @@
 import Link from 'next/link'
-import { ActionBanner, AdvisoryHero, DisclosureNotice, SectionHeading } from '@/components/site/AdvisoryPrimitives'
+import { InternalPageHeader, InternalSectionHeader } from '@/components/site/InternalPagePrimitives'
 import { buildPageMetadata } from '@/lib/site-metadata'
-
-const POSITIONING = [
-  'Project finance structuring',
-  'Documentation readiness',
-  'Capital pathway planning',
-  'Controlled execution frameworks',
-]
 
 const PRINCIPLES = [
   {
     title: 'Institutional discipline',
-    body: 'We prioritize diligence, documentary coherence, and process control over promotional claims about capital availability.',
+    body: 'We prioritize clarity, documentary coherence, and advisory judgment over promotional narratives.',
   },
   {
-    title: 'Qualified mandate focus',
-    body: 'We are designed for sponsors with serious infrastructure or energy situations, not generic funding requests.',
+    title: 'Integrated perspective',
+    body: 'We work where engineering logic, commercial structure, and capital requirements must align.',
   },
   {
     title: 'Execution awareness',
-    body: 'We work on structures that can withstand counterparties, approvals, and disbursement realities once a mandate begins.',
+    body: 'We frame mandates with the discipline required for counterparties, approvals, and implementation realities.',
   },
 ]
 
@@ -39,77 +32,60 @@ export const metadata = buildPageMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="institutional-shell">
-      <div className="institutional-container">
-        <AdvisoryHero
-          eyebrow="About ONEMIND"
-          title="A restrained, institutional approach to project finance advisory."
-          description="ONEMIND focuses on the work that helps qualified infrastructure and energy projects become reviewable by serious counterparties: structure, documentation, control logic, and transaction discipline."
-          scene="about"
-          imageAlt="Aerial view of a large industrial infrastructure complex used to represent institutional-scale advisory work."
-          tags={['Institutional Advisory', 'Project Finance Structuring', 'Documentation Readiness']}
-          primaryAction={{ href: '/support#inquiry-form', label: 'Start Project Pre-Qualification' }}
-          secondaryAction={{ href: '/pre-qualification', label: 'See Qualification Criteria' }}
-          details={[
-            { label: 'Focus', value: 'Government-backed infrastructure and energy projects' },
-            { label: 'Approach', value: 'Clarity, control, and counterparty readiness' },
-            { label: 'Boundary', value: 'No website statement is a funding promise or guarantee' },
-          ]}
+    <div className="internal-page">
+      <div className="internal-page__container">
+        <InternalPageHeader
+          eyebrow="About"
+          title="A restrained advisory platform for infrastructure and energy mandates"
+          description="ONEMIND is positioned at the intersection of project structuring, capital readiness, and execution discipline for large-scale infrastructure situations."
         />
 
-        <section className="institutional-section">
-          <div className="institutional-split institutional-split--wide">
-            <div>
-              <SectionHeading
-                eyebrow="Positioning"
-                title="We are not a general corporate website for everyone."
-                description="The brand is intentionally selective. It should communicate that ONEMIND sits closer to an infrastructure finance advisory boutique than a broad industrial services firm."
-              />
-            </div>
-            <div className="institutional-card institutional-card--soft">
-              <div className="institutional-list">
-                {POSITIONING.map((item) => (
-                  <div key={item} className="institutional-list__item">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
+        <section className="internal-page__section">
+          <InternalSectionHeader
+            eyebrow="Positioning"
+            title="We are built for selective, institutional work."
+            description="The platform is designed to communicate judgment, discretion, and readiness for serious project conversations."
+          />
+
+          <div className="internal-positioning">
+            <p className="internal-positioning__statement">
+              We advise on projects where technical definition, commercial structure, and capital pathways must be presented with institutional clarity.
+            </p>
           </div>
         </section>
 
-        <section className="institutional-section">
-          <SectionHeading
-            eyebrow="Operating Principles"
-            title="The standard is credibility under review."
-            description="Everything from website copy to intake design should make it clear that diligence, compliance, and execution logic come before any financing narrative."
+        <section className="internal-page__section internal-page__section--soft">
+          <InternalSectionHeader
+            eyebrow="Core Philosophy"
+            title="Our standard is credibility under review."
           />
-          <div className="institutional-grid institutional-grid--three">
+
+          <div className="internal-principles">
             {PRINCIPLES.map((item) => (
-              <article key={item.title} className="institutional-card">
-                <div className="institutional-card__eyebrow">Principle</div>
-                <h2 className="institutional-card__title">{item.title}</h2>
-                <p className="institutional-card__copy">{item.body}</p>
+              <article key={item.title} className="internal-principles__item">
+                <h2 className="internal-principles__title">{item.title}</h2>
+                <p className="internal-principles__body">{item.body}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="institutional-section">
-          <DisclosureNotice title="Advisory Boundary">
-            All engagements are subject to independent due diligence, legal review, compliance procedures, and executed
-            agreements by relevant counterparties. ONEMIND does not present this website as a public offering platform or
-            a source of guaranteed funding outcomes.
-          </DisclosureNotice>
+        <section className="internal-page__section">
+          <div className="internal-cta">
+            <div>
+              <div className="internal-page__eyebrow">Contact</div>
+              <h2 className="internal-section__title">For qualified situations, begin with a structured discussion.</h2>
+            </div>
+            <div className="internal-actions">
+              <Link href="/support#inquiry-form" className="institutional-button institutional-button--primary">
+                Start a Discussion
+              </Link>
+              <Link href="/documentation-checklist" className="institutional-button institutional-button--secondary">
+                Review Checklist
+              </Link>
+            </div>
+          </div>
         </section>
-
-        <ActionBanner
-          eyebrow="Project Inquiry"
-          title="For qualified sponsors, the next step is a structured intake."
-          description="Use the project inquiry page to submit the project basis, sponsor profile, and documentation status for preliminary review."
-          primaryAction={{ href: '/support#inquiry-form', label: 'Start Project Inquiry' }}
-          secondaryAction={{ href: '/documentation-checklist', label: 'Review Required Documentation' }}
-        />
       </div>
     </div>
   )

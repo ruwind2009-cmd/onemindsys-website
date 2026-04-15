@@ -5,19 +5,27 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const NAV_LINKS = [
-  { label: 'Pre-Qualification', href: '/pre-qualification', match: (pathname: string) => pathname === '/pre-qualification' },
-  { label: 'Funding Structure', href: '/funding-structure', match: (pathname: string) => pathname === '/funding-structure' || pathname === '/capabilities' || pathname === '/financing' },
-  { label: 'Government-Backed Projects', href: '/government-backed-projects', match: (pathname: string) => pathname === '/government-backed-projects' || pathname === '/enterprise' || pathname === '/technology' },
-  { label: 'Documentation', href: '/documentation-checklist', match: (pathname: string) => pathname === '/documentation-checklist' || pathname === '/delivery' || pathname === '/developers' || pathname === '/architecture' },
-  { label: 'Projects', href: '/projects', match: (pathname: string) => pathname.startsWith('/projects') },
-  { label: 'About', href: '/about', match: (pathname: string) => pathname === '/about' },
-  { label: 'Project Inquiry', href: '/support', match: (pathname: string) => pathname === '/support' },
-]
+const NAV_LINKS = {
+  en: [
+    { label: 'Home', href: '/', match: (pathname: string) => pathname === '/' },
+    { label: 'Experience', href: '/projects', match: (pathname: string) => pathname.startsWith('/projects') },
+    { label: 'About', href: '/about', match: (pathname: string) => pathname === '/about' },
+    { label: 'Contact', href: '/support', match: (pathname: string) => pathname === '/support' },
+  ],
+  zh: [
+    { label: '首页', href: '/zh', match: (pathname: string) => pathname === '/zh' },
+    { label: '项目经验', href: '/projects', match: (pathname: string) => pathname.startsWith('/projects') },
+    { label: '关于', href: '/about', match: (pathname: string) => pathname === '/about' },
+    { label: '联系', href: '/support', match: (pathname: string) => pathname === '/support' },
+  ],
+}
 
 export function Header() {
   const pathname = usePathname()
   const isChinesePath = pathname.startsWith('/zh')
+  const isLightChrome = pathname === '/' || pathname === '/projects' || pathname === '/about' || pathname === '/support'
+  const navLinks = isChinesePath ? NAV_LINKS.zh : NAV_LINKS.en
+  const homeHref = isChinesePath ? '/zh' : '/'
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -31,37 +39,46 @@ export function Header() {
     <header
       className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? 'rgba(6, 12, 22, 0.9)' : 'rgba(6, 12, 22, 0.72)',
-        borderBottom: '1px solid rgba(150, 164, 186, 0.16)',
-        backdropFilter: 'blur(18px)',
+        background: isLightChrome
+          ? scrolled
+            ? 'rgba(245, 245, 244, 0.94)'
+            : 'rgba(245, 245, 244, 0.78)'
+          : scrolled
+            ? 'rgba(10, 12, 16, 0.92)'
+            : 'rgba(10, 12, 16, 0.7)',
+        borderBottom: isLightChrome ? '1px solid #E5E7EB' : '1px solid rgba(184, 190, 198, 0.12)',
+        backdropFilter: 'blur(20px)',
       }}
     >
       <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link href="/" className="shrink-0">
-          <div className="font-orbitron text-base font-semibold tracking-[0.28em]" style={{ color: '#f3f6fb' }}>
+        <Link href={homeHref} className="shrink-0">
+          <div className="text-[0.95rem] font-semibold tracking-[0.28em]" style={{ color: isLightChrome ? '#111827' : '#f4f2ec' }}>
             ONEMIND
           </div>
-          <div className="mt-1 text-[11px] tracking-[0.22em]" style={{ color: 'rgba(214, 222, 234, 0.66)' }}>
-            Project Finance Advisory
+          <div
+            className="mt-1 text-[10px] uppercase tracking-[0.26em]"
+            style={{ color: isLightChrome ? '#5B6472' : 'rgba(232, 235, 239, 0.52)' }}
+          >
+            {isChinesePath ? '基础设施与能源顾问' : 'Infrastructure & Energy Advisory'}
           </div>
         </Link>
 
         <div className="hidden items-center gap-1 xl:flex">
-          {NAV_LINKS.map((link) => {
+          {navLinks.map((link) => {
             const active = link.match(pathname)
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 className="relative rounded-full px-3.5 py-2 text-sm font-semibold transition-colors"
-                style={{ color: active ? '#f4f7fb' : 'rgba(214, 222, 234, 0.74)' }}
+                style={{ color: active ? (isLightChrome ? '#111827' : '#f4f2ec') : isLightChrome ? '#5B6472' : 'rgba(232, 235, 239, 0.7)' }}
               >
                 {link.label}
                 {active && (
                   <motion.span
                     layoutId="nav-active"
                     className="absolute inset-0 -z-10 rounded-full"
-                    style={{ background: 'rgba(255, 255, 255, 0.08)' }}
+                    style={{ background: isLightChrome ? 'rgba(17, 24, 39, 0.05)' : 'rgba(255, 255, 255, 0.07)' }}
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.45 }}
                   />
                 )}
@@ -71,11 +88,16 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-3 xl:flex">
-          <Link href="/funding-structure" className="hidden text-sm font-semibold 2xl:inline-flex" style={{ color: 'rgba(214, 222, 234, 0.74)' }}>
-            View Funding Framework
-          </Link>
-          <Link href="/support#inquiry-form" className="btn-primary text-sm">
-            Start Pre-Qualification
+          <Link
+            href="/support#inquiry-form"
+            className="inline-flex min-h-[2.85rem] items-center rounded-full border px-4 text-sm font-semibold transition-colors"
+            style={{
+              borderColor: isLightChrome ? '#1E2A38' : 'rgba(244, 242, 236, 0.2)',
+              background: isLightChrome ? '#1E2A38' : 'rgba(244, 242, 236, 0.94)',
+              color: isLightChrome ? '#F9FAFB' : '#111318',
+            }}
+          >
+            {isChinesePath ? '发起讨论' : 'Start a Discussion'}
           </Link>
         </div>
 
@@ -83,7 +105,7 @@ export function Header() {
           aria-label={isChinesePath ? '切换菜单' : 'Toggle menu'}
           className="xl:hidden"
           onClick={() => setMenuOpen((value) => !value)}
-          style={{ color: '#f4f7fb' }}
+          style={{ color: isLightChrome ? '#111827' : '#f4f2ec' }}
         >
           <div className="space-y-1.5">
             <span className="block h-0.5 w-6 rounded-full bg-current" />
@@ -100,30 +122,36 @@ export function Header() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             style={{
-              background: 'rgba(8, 15, 27, 0.98)',
-              borderTop: '1px solid rgba(150, 164, 186, 0.16)',
+              background: isLightChrome ? 'rgba(250, 250, 248, 0.98)' : 'rgba(12, 14, 18, 0.98)',
+              borderTop: isLightChrome ? '1px solid #E5E7EB' : '1px solid rgba(184, 190, 198, 0.12)',
             }}
           >
             <div className="space-y-2 px-6 py-5">
-              {NAV_LINKS.map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="block rounded-2xl px-4 py-3 text-sm font-semibold"
                   style={{
-                    color: link.match(pathname) ? '#f4f7fb' : 'rgba(214, 222, 234, 0.74)',
-                    background: link.match(pathname) ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
+                    color: link.match(pathname) ? (isLightChrome ? '#111827' : '#f4f2ec') : isLightChrome ? '#5B6472' : 'rgba(232, 235, 239, 0.72)',
+                    background: link.match(pathname) ? (isLightChrome ? 'rgba(17, 24, 39, 0.05)' : 'rgba(255, 255, 255, 0.07)') : 'transparent',
                   }}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Link href="/funding-structure" onClick={() => setMenuOpen(false)} className="btn-outline mt-3 w-full text-sm">
-                View Funding Framework
-              </Link>
-              <Link href="/support#inquiry-form" onClick={() => setMenuOpen(false)} className="btn-primary mt-3 w-full text-sm">
-                Start Pre-Qualification
+              <Link
+                href="/support#inquiry-form"
+                onClick={() => setMenuOpen(false)}
+                className="mt-3 inline-flex min-h-[3rem] w-full items-center justify-center rounded-full border text-sm font-semibold"
+                style={{
+                  borderColor: isLightChrome ? '#1E2A38' : 'rgba(244, 242, 236, 0.18)',
+                  background: isLightChrome ? '#1E2A38' : 'rgba(244, 242, 236, 0.94)',
+                  color: isLightChrome ? '#F9FAFB' : '#111318',
+                }}
+              >
+                {isChinesePath ? '发起讨论' : 'Start a Discussion'}
               </Link>
             </div>
           </motion.div>
