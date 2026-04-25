@@ -5,16 +5,16 @@ import { InternalPageHeader, InternalSectionHeader } from '@/components/site/Int
 import { buildPageMetadata } from '@/lib/site-metadata'
 
 const INTAKE_CRITERIA = [
-  'Defined sponsor and operating company information',
-  'Clear project sector, stage, and total capital requirement',
-  'Visibility on repayment source and sponsor equity position',
-  'Government support or project documentation where relevant',
+  'Defined sponsor, asset type, country, and project stage',
+  'Clear funding requirement and project size or capacity',
+  'Visibility on revenue source, offtake, government support, or repayment logic',
+  'Available documentation for bankability, RWA readiness, or settlement review',
 ]
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Project Inquiry and Pre-Qualification',
   description:
-    'Submit a qualified infrastructure or energy project for preliminary review by ONEMIND through a structured pre-qualification intake.',
+    'Submit a qualified infrastructure or energy project for preliminary Web3 project finance, RWA readiness, stablecoin settlement, or investor package review.',
   path: '/support',
   keywords: [
     'project inquiry',
@@ -31,8 +31,8 @@ export default function SupportPage() {
       <div className="internal-page__container">
         <InternalPageHeader
           eyebrow="Contact"
-          title="Begin with a confidential project discussion"
-          description="Use the inquiry form for infrastructure and energy situations that require structured review, capital readiness assessment, or execution alignment."
+          title="Begin with a confidential project structuring discussion"
+          description="Use the intake form for real-world infrastructure and energy projects that require project finance structuring, RWA readiness review, stablecoin settlement mapping, or investor-facing documentation."
         />
 
         <section className="internal-page__section">
@@ -68,14 +68,14 @@ export default function SupportPage() {
           <div className="internal-cta">
             <div>
               <div className="internal-page__eyebrow">Preparation</div>
-              <h2 className="internal-section__title">Review the documentation checklist before submission if needed.</h2>
+              <h2 className="internal-section__title">Review the readiness criteria before submission if needed.</h2>
             </div>
             <div className="internal-actions">
-              <Link href="/documentation-checklist" className="institutional-button institutional-button--primary">
-                Open Checklist
+              <Link href="/submit-project" className="institutional-button institutional-button--primary">
+                Submit Project
               </Link>
-              <Link href="/projects" className="institutional-button institutional-button--secondary">
-                View Experience
+              <Link href="/tokenization-readiness" className="institutional-button institutional-button--secondary">
+                Readiness Criteria
               </Link>
             </div>
           </div>

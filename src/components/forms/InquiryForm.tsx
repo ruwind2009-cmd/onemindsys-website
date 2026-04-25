@@ -18,6 +18,26 @@ type SubmitFailure = {
 
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error'
 
+const INTEREST_OPTIONS = [
+  'Project finance structuring',
+  'RWA readiness',
+  'Stablecoin settlement',
+  'Investor package',
+  'Government-backed financing',
+  'Other',
+]
+
+const DOCUMENT_OPTIONS = [
+  'Feasibility study',
+  'PPA / offtake agreement',
+  'Government letter / LOI / LOA',
+  'EPC proposal',
+  'Financial model',
+  'Land/permit documents',
+  'Company documents',
+  'Other',
+]
+
 function FieldError({ message }: { message?: string }) {
   if (!message) return null
 
@@ -56,6 +76,15 @@ export function InquiryForm() {
       setSubmitState('idle')
       setSubmitFailure(null)
     }
+  }
+
+  const toggleArrayValue = (field: 'interestedIn' | 'documentsAvailable', value: string) => {
+    const currentValue = formData[field]
+    const nextValue = currentValue.includes(value)
+      ? currentValue.filter((item) => item !== value)
+      : [...currentValue, value]
+
+    handleChange(field, nextValue)
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -130,18 +159,10 @@ export function InquiryForm() {
         <h2 className="contact-form__title">Your project inquiry has been received.</h2>
         <p className="contact-form__copy">{submitted.message}</p>
         <div className="contact-form__status">
-          <div className="contact-form__status-label">
-            Inquiry ID
-          </div>
-          <div className="contact-form__status-value">
-            {submitted.inquiryId}
-          </div>
+          <div className="contact-form__status-label">Inquiry ID</div>
+          <div className="contact-form__status-value">{submitted.inquiryId}</div>
         </div>
-        {submitted.warning ? (
-          <p className="contact-form__copy contact-form__copy--compact">
-            {submitted.warning}
-          </p>
-        ) : null}
+        {submitted.warning ? <p className="contact-form__copy contact-form__copy--compact">{submitted.warning}</p> : null}
         <div className="internal-actions mt-8">
           <button
             type="button"
@@ -153,8 +174,8 @@ export function InquiryForm() {
           >
             Submit Another Project
           </button>
-          <Link href="/documentation-checklist" className="institutional-button institutional-button--secondary">
-            Review Checklist
+          <Link href="/tokenization-readiness" className="institutional-button institutional-button--secondary">
+            Review Readiness Criteria
           </Link>
         </div>
       </div>
@@ -163,11 +184,11 @@ export function InquiryForm() {
 
   return (
     <form id="inquiry-form" className="contact-form" onSubmit={handleSubmit} noValidate>
-      <div className="contact-form__eyebrow">Pre-Qualification Intake</div>
-      <h2 className="contact-form__title">Submit project basis and sponsor readiness details.</h2>
+      <div className="contact-form__eyebrow">Web3 Project Intake</div>
+      <h2 className="contact-form__title">Submit a real-world project for preliminary structuring review.</h2>
       <p className="contact-form__copy">
-        The form is intentionally structured to help screen for fit, documentation readiness, and seriousness before any deeper
-        conversation begins.
+        This intake helps ONEMIND evaluate project substance, bankability, documentation readiness, RWA suitability, and
+        whether a stablecoin settlement or investor package discussion is appropriate.
       </p>
 
       <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -182,7 +203,7 @@ export function InquiryForm() {
 
         <div className="form-field">
           <label htmlFor="fullName" className="form-label">
-            Full Name
+            Name
           </label>
           <input
             id="fullName"
@@ -203,29 +224,13 @@ export function InquiryForm() {
           <input
             id="company"
             className="form-input"
-            placeholder="Company name"
+            placeholder="Company or project sponsor"
             value={formData.company}
             maxLength={160}
             onChange={(event) => handleChange('company', event.target.value)}
             aria-invalid={Boolean(errors.company)}
           />
           <FieldError message={errors.company} />
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="country" className="form-label">
-            Country
-          </label>
-          <input
-            id="country"
-            className="form-input"
-            placeholder="Country"
-            value={formData.country}
-            maxLength={80}
-            onChange={(event) => handleChange('country', event.target.value)}
-            aria-invalid={Boolean(errors.country)}
-          />
-          <FieldError message={errors.country} />
         </div>
 
         <div className="form-field">
@@ -247,12 +252,12 @@ export function InquiryForm() {
 
         <div className="form-field">
           <label htmlFor="phone" className="form-label">
-            WhatsApp / Phone
+            WhatsApp / Telegram / Phone
           </label>
           <input
             id="phone"
             className="form-input"
-            placeholder="+971 ..."
+            placeholder="+971 ... / @telegram"
             value={formData.phone}
             maxLength={80}
             onChange={(event) => handleChange('phone', event.target.value)}
@@ -262,29 +267,29 @@ export function InquiryForm() {
         </div>
 
         <div className="form-field">
-          <label htmlFor="projectName" className="form-label">
-            Project Name
+          <label htmlFor="country" className="form-label">
+            Project Country
           </label>
           <input
-            id="projectName"
+            id="country"
             className="form-input"
-            placeholder="Project name"
-            value={formData.projectName}
-            maxLength={180}
-            onChange={(event) => handleChange('projectName', event.target.value)}
-            aria-invalid={Boolean(errors.projectName)}
+            placeholder="Country or jurisdiction"
+            value={formData.country}
+            maxLength={80}
+            onChange={(event) => handleChange('country', event.target.value)}
+            aria-invalid={Boolean(errors.country)}
           />
-          <FieldError message={errors.projectName} />
+          <FieldError message={errors.country} />
         </div>
 
         <div className="form-field">
           <label htmlFor="sector" className="form-label">
-            Sector
+            Project Type
           </label>
           <input
             id="sector"
             className="form-input"
-            placeholder="Power, solar, data center, water..."
+            placeholder="Solar / Power / Infrastructure / Other"
             value={formData.sector}
             maxLength={120}
             onChange={(event) => handleChange('sector', event.target.value)}
@@ -295,12 +300,12 @@ export function InquiryForm() {
 
         <div className="form-field">
           <label htmlFor="totalProjectSize" className="form-label">
-            Total Project Size
+            Project Size / Capacity
           </label>
           <input
             id="totalProjectSize"
             className="form-input"
-            placeholder="USD 150 million"
+            placeholder="20MW, 1,000MW, USD 150 million CAPEX..."
             value={formData.totalProjectSize}
             maxLength={120}
             onChange={(event) => handleChange('totalProjectSize', event.target.value)}
@@ -310,8 +315,24 @@ export function InquiryForm() {
         </div>
 
         <div className="form-field">
+          <label htmlFor="estimatedFundingRequirement" className="form-label">
+            Estimated Funding Requirement
+          </label>
+          <input
+            id="estimatedFundingRequirement"
+            className="form-input"
+            placeholder="USD 30 million"
+            value={formData.estimatedFundingRequirement}
+            maxLength={120}
+            onChange={(event) => handleChange('estimatedFundingRequirement', event.target.value)}
+            aria-invalid={Boolean(errors.estimatedFundingRequirement)}
+          />
+          <FieldError message={errors.estimatedFundingRequirement} />
+        </div>
+
+        <div className="form-field">
           <label htmlFor="projectStage" className="form-label">
-            Current Project Stage
+            Project Stage
           </label>
           <select
             id="projectStage"
@@ -324,16 +345,17 @@ export function InquiryForm() {
             <option value="concept">Concept / early-stage structuring</option>
             <option value="feasibility">Feasibility / development</option>
             <option value="permitted">Permitted / approved</option>
-            <option value="procurement">Procurement / EPC coordination</option>
+            <option value="epc-procurement">EPC / procurement coordination</option>
             <option value="ready-for-financing">Ready for financing review</option>
             <option value="under-negotiation">Already under financing discussion</option>
+            <option value="operating-asset">Operating asset / refinancing</option>
           </select>
           <FieldError message={errors.projectStage} />
         </div>
 
         <div className="form-field">
           <label htmlFor="governmentSupportAvailable" className="form-label">
-            Government Support Documents Available?
+            Government Support?
           </label>
           <select
             id="governmentSupportAvailable"
@@ -345,76 +367,77 @@ export function InquiryForm() {
             <option value="">Select</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
+            <option value="under-discussion">Under discussion</option>
           </select>
           <FieldError message={errors.governmentSupportAvailable} />
         </div>
 
         <div className="form-field">
-          <label htmlFor="sponsorEquityAvailable" className="form-label">
-            Existing Sponsor Equity Available?
+          <label htmlFor="offtakeOrRevenueContract" className="form-label">
+            Offtake or Revenue Contract?
           </label>
           <select
-            id="sponsorEquityAvailable"
+            id="offtakeOrRevenueContract"
             className="form-input"
-            value={formData.sponsorEquityAvailable}
-            onChange={(event) => handleChange('sponsorEquityAvailable', event.target.value)}
-            aria-invalid={Boolean(errors.sponsorEquityAvailable)}
+            value={formData.offtakeOrRevenueContract}
+            onChange={(event) => handleChange('offtakeOrRevenueContract', event.target.value)}
+            aria-invalid={Boolean(errors.offtakeOrRevenueContract)}
           >
             <option value="">Select</option>
             <option value="yes">Yes</option>
             <option value="no">No</option>
+            <option value="under-negotiation">Under negotiation</option>
           </select>
-          <FieldError message={errors.sponsorEquityAvailable} />
-        </div>
-
-        <div className="form-field">
-          <label htmlFor="documentsReady" className="form-label">
-            Core Documents Ready?
-          </label>
-          <select
-            id="documentsReady"
-            className="form-input"
-            value={formData.documentsReady}
-            onChange={(event) => handleChange('documentsReady', event.target.value)}
-            aria-invalid={Boolean(errors.documentsReady)}
-          >
-            <option value="">Select</option>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-          <FieldError message={errors.documentsReady} />
+          <FieldError message={errors.offtakeOrRevenueContract} />
         </div>
 
         <div className="form-field md:col-span-2">
-          <label htmlFor="repaymentSource" className="form-label">
-            Repayment Source
-          </label>
-          <input
-            id="repaymentSource"
-            className="form-input"
-            placeholder="PPA receivables, concession revenue, budget support..."
-            value={formData.repaymentSource}
-            maxLength={400}
-            onChange={(event) => handleChange('repaymentSource', event.target.value)}
-            aria-invalid={Boolean(errors.repaymentSource)}
-          />
-          <FieldError message={errors.repaymentSource} />
+          <label className="form-label">Interested In</label>
+          <div className="form-check-grid">
+            {INTEREST_OPTIONS.map((option) => (
+              <label key={option} className="form-check">
+                <input
+                  type="checkbox"
+                  checked={formData.interestedIn.includes(option)}
+                  onChange={() => toggleArrayValue('interestedIn', option)}
+                />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
+          <FieldError message={errors.interestedIn} />
         </div>
 
         <div className="form-field md:col-span-2">
           <label htmlFor="message" className="form-label">
-            Brief Project Summary
+            Short Project Description
           </label>
           <textarea
             id="message"
             className="form-input form-textarea"
-            placeholder="Describe the project, current stage, counterparties, and the main structuring or financing constraint."
+            placeholder="Describe the asset, sponsor, current status, revenue source, funding need, counterparties, and the main structuring constraint."
             value={formData.message}
             maxLength={3000}
             onChange={(event) => handleChange('message', event.target.value)}
             aria-invalid={Boolean(errors.message)}
           />
           <FieldError message={errors.message} />
+        </div>
+
+        <div className="form-field md:col-span-2">
+          <label className="form-label">Documents Available</label>
+          <div className="form-check-grid">
+            {DOCUMENT_OPTIONS.map((option) => (
+              <label key={option} className="form-check">
+                <input
+                  type="checkbox"
+                  checked={formData.documentsAvailable.includes(option)}
+                  onChange={() => toggleArrayValue('documentsAvailable', option)}
+                />
+                <span>{option}</span>
+              </label>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -427,10 +450,11 @@ export function InquiryForm() {
             className="mt-1 h-4 w-4 rounded border"
             style={{ borderColor: '#D1D5DB', accentColor: '#1E2A38' }}
             aria-invalid={Boolean(errors.confidentialityAccepted)}
+            required
           />
           <span>
-            I understand this submission is for confidential preliminary review of advisory fit only and does not constitute a
-            funding commitment, underwriting promise, or guaranteed transaction outcome.
+            I understand that ONEMIND provides advisory and structuring support only and does not provide legal, tax,
+            custody, securities, or regulated financial services.
           </span>
         </label>
         <FieldError message={errors.confidentialityAccepted} />
@@ -438,25 +462,16 @@ export function InquiryForm() {
 
       <div className="internal-actions mt-8">
         <button type="submit" className="institutional-button institutional-button--primary" disabled={submitState === 'submitting'}>
-          {submitState === 'submitting' ? 'Submitting...' : 'Submit Project Inquiry'}
+          {submitState === 'submitting' ? 'Submitting...' : 'Submit Project for Review'}
         </button>
-        <Link href="/documentation-checklist" className="institutional-button institutional-button--secondary">
-          Review Documentation Checklist
-        </Link>
       </div>
 
       {submitFailure ? (
         <div className="contact-form__status mt-4">
-          <div className="contact-form__status-label">
-            Submission Unavailable
-          </div>
-          <p className="contact-form__copy contact-form__copy--compact">
-            {submitFailure.message}
-          </p>
+          <div className="contact-form__status-label">Submission Unavailable</div>
+          <p className="contact-form__copy contact-form__copy--compact">{submitFailure.message}</p>
           {submitFailure.inquiryId ? (
-            <p className="contact-form__copy contact-form__copy--compact">
-              Inquiry ID: {submitFailure.inquiryId}
-            </p>
+            <p className="contact-form__copy contact-form__copy--compact">Inquiry ID: {submitFailure.inquiryId}</p>
           ) : null}
         </div>
       ) : null}

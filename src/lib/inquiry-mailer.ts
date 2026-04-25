@@ -41,6 +41,10 @@ function textOrDash(value: string) {
   return value || '-'
 }
 
+function listOrDash(value: string[]) {
+  return value.length > 0 ? value.join(', ') : '-'
+}
+
 function formatDateLabel(value: string) {
   const date = new Date(value)
   if (!Number.isFinite(date.getTime())) return value
@@ -123,15 +127,20 @@ function buildInternalText(payload: InquiryPayload, meta: InquiryMeta) {
     `Full Name: ${payload.fullName}`,
     `Company: ${textOrDash(payload.company)}`,
     `Email: ${payload.email}`,
-    `Country: ${textOrDash(payload.country)}`,
-    `Phone: ${textOrDash(payload.phone)}`,
+    `Project Country: ${textOrDash(payload.country)}`,
+    `WhatsApp / Telegram / Phone: ${textOrDash(payload.phone)}`,
     '',
     'Project Details',
     `Project Name: ${textOrDash(payload.projectName)}`,
-    `Sector: ${textOrDash(payload.sector)}`,
-    `Total Project Size: ${textOrDash(payload.totalProjectSize)}`,
+    `Project Type: ${textOrDash(payload.sector)}`,
+    `Project Size / Capacity: ${textOrDash(payload.totalProjectSize)}`,
+    `Estimated Funding Requirement: ${textOrDash(payload.estimatedFundingRequirement)}`,
     `Project Stage: ${textOrDash(payload.projectStage)}`,
-    `Government Support Documents: ${textOrDash(payload.governmentSupportAvailable)}`,
+    `Government Support: ${textOrDash(payload.governmentSupportAvailable)}`,
+    `Offtake / Revenue Contract: ${textOrDash(payload.offtakeOrRevenueContract)}`,
+    `Interested In: ${listOrDash(payload.interestedIn)}`,
+    `Documents Available: ${listOrDash(payload.documentsAvailable)}`,
+    `Advisory Consent Accepted: ${payload.confidentialityAccepted ? 'Yes' : 'No'}`,
     `Repayment Source: ${textOrDash(payload.repaymentSource)}`,
     `Sponsor Equity Available: ${textOrDash(payload.sponsorEquityAvailable)}`,
     `Documents Ready: ${textOrDash(payload.documentsReady)}`,
@@ -155,13 +164,18 @@ function buildInternalHtml(payload: InquiryPayload, meta: InquiryMeta) {
     ['Full Name', payload.fullName],
     ['Company', textOrDash(payload.company)],
     ['Email', payload.email],
-    ['Country', textOrDash(payload.country)],
-    ['Phone', textOrDash(payload.phone)],
+    ['Project Country', textOrDash(payload.country)],
+    ['WhatsApp / Telegram / Phone', textOrDash(payload.phone)],
     ['Project Name', textOrDash(payload.projectName)],
-    ['Sector', textOrDash(payload.sector)],
-    ['Total Project Size', textOrDash(payload.totalProjectSize)],
+    ['Project Type', textOrDash(payload.sector)],
+    ['Project Size / Capacity', textOrDash(payload.totalProjectSize)],
+    ['Estimated Funding Requirement', textOrDash(payload.estimatedFundingRequirement)],
     ['Project Stage', textOrDash(payload.projectStage)],
-    ['Government Support Documents', textOrDash(payload.governmentSupportAvailable)],
+    ['Government Support', textOrDash(payload.governmentSupportAvailable)],
+    ['Offtake / Revenue Contract', textOrDash(payload.offtakeOrRevenueContract)],
+    ['Interested In', listOrDash(payload.interestedIn)],
+    ['Documents Available', listOrDash(payload.documentsAvailable)],
+    ['Advisory Consent Accepted', payload.confidentialityAccepted ? 'Yes' : 'No'],
     ['Repayment Source', textOrDash(payload.repaymentSource)],
     ['Sponsor Equity Available', textOrDash(payload.sponsorEquityAvailable)],
     ['Documents Ready', textOrDash(payload.documentsReady)],

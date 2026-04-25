@@ -33,79 +33,89 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
   if (!project) notFound()
 
   return (
-    <div className="page-shell page-shell--quiet">
-      <div className="page-container">
-        <div className="page-hero page-hero--feature">
-          <div className="sec-label">Project</div>
-          <h1 className="page-title page-title--feature">{project.title}</h1>
-          <p className="page-subtitle">{project.summary}</p>
-          <div className="mt-8 grid gap-4 md:grid-cols-4">
+    <div className="project-profile">
+      <div className="project-profile__container">
+        <header className="project-profile__hero">
+          <div className="project-profile__eyebrow">Project Profile</div>
+          <h1 className="project-profile__title">{project.title}</h1>
+          <p className="project-profile__summary">{project.summary}</p>
+          <div className="project-profile__facts">
             {[
               ['Region', project.region],
               ['Project Type', project.projectType],
               ['Role Type', project.roleType],
               ['Role', project.role],
             ].map(([label, value]) => (
-              <div key={label} className="rounded-[24px] border px-5 py-4" style={{ borderColor: 'var(--color-border)', background: 'rgba(11, 18, 31, 0.74)' }}>
-                <div className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: 'var(--color-text3)' }}>
-                  {label}
-                </div>
-                <div className="mt-2 text-sm leading-7" style={{ color: 'var(--color-text)' }}>
-                  {value}
-                </div>
+              <div key={label} className="project-profile__fact">
+                <div className="project-profile__fact-label">{label}</div>
+                <div className="project-profile__fact-value">{value}</div>
               </div>
             ))}
           </div>
-        </div>
+        </header>
 
-        <div className="page-section grid gap-5">
+        <div className="project-profile__section project-profile__section-grid">
           {project.sections.map((section) => (
-            <section key={section.title} className="card-base card-role-info card-panel">
-              <h2 className="card-heading !mt-0">{section.title}</h2>
-              <div className="mt-5 space-y-4">
+            <section
+              key={section.title}
+              className={`project-profile__card ${
+                section.title.toLowerCase() === 'disclosure' ? 'project-profile__card--disclosure' : ''
+              }`}
+            >
+              {section.title.toLowerCase() === 'disclosure' ? (
+                <div className="project-profile__card-eyebrow">Advisory Disclosure</div>
+              ) : null}
+              <h2 className="project-profile__card-title">{section.title}</h2>
+              <div className="project-profile__copy-stack">
                 {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph} className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
-                    {paragraph}
-                  </p>
+                  <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
             </section>
           ))}
         </div>
 
-        <div className="page-section card-base card-role-info card-panel">
-          <div className="card-kicker">Value</div>
-          <p className="card-copy" style={{ color: 'var(--color-text)' }}>
+        <section className="project-profile__section project-profile__card project-profile__card--value">
+          <div className="project-profile__card-eyebrow">Mandate Value</div>
+          <p className="project-profile__value">
             {project.value}
           </p>
-        </div>
+        </section>
 
-        <div className="page-section grid gap-5 md:grid-cols-2">
+        <section className="project-profile__section project-profile__section-grid project-profile__section-grid--two">
           {project.relatedLinks.map((link) => (
-            <div key={link.href} className="card-base card-role-nav card-panel">
-              <div className="card-kicker">Related Action</div>
-              <h2 className="card-heading">{link.label}</h2>
-              <p className="card-copy">{link.description}</p>
-              <div className="button-row card-actions">
-                <Link href={link.href} className="btn-secondary">
+            <div key={link.href} className="project-profile__card project-profile__card--action">
+              <div className="project-profile__card-eyebrow">Related Action</div>
+              <h2 className="project-profile__card-title">{link.label}</h2>
+              <p className="project-profile__card-copy">{link.description}</p>
+              <div className="project-profile__actions">
+                <Link href={link.href} className="project-profile__button project-profile__button--secondary">
                   Open Related Page
                 </Link>
               </div>
             </div>
           ))}
-        </div>
+        </section>
 
-        <div className="page-section card-base card-role-solution page-callout">
-          <div className="page-callout-title">Submit a Comparable Project for Review</div>
-          <div className="button-row mt-6">
-            <Link href="/support#inquiry-form" className="btn-primary">
-              Start Project Inquiry
+        <section className="project-profile__section project-profile__disclosure">
+          <div className="project-profile__card-eyebrow">Advisory Disclosure</div>
+          <p>
+            These examples represent advisory experience and structuring logic. They do not imply token issuance,
+            securities offering, custody activity, payment licensing, or completed regulated transactions.
+          </p>
+        </section>
+
+        <section className="project-profile__section project-profile__cta">
+          <div className="project-profile__cta-title">Submit a Comparable Project for Review</div>
+          <div className="project-profile__actions">
+            <Link href="/submit-project" className="project-profile__button project-profile__button--primary">
+              Submit Project
             </Link>
-            <Link href="/pre-qualification" className="btn-secondary">
-              Review Qualification Criteria
+            <Link href="/tokenization-readiness" className="project-profile__button project-profile__button--secondary">
+              Review Readiness Criteria
             </Link>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   )

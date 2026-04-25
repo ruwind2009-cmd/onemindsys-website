@@ -7,8 +7,12 @@ export type InquiryPayload = {
   projectName: string
   sector: string
   totalProjectSize: string
+  estimatedFundingRequirement: string
   projectStage: string
   governmentSupportAvailable: string
+  offtakeOrRevenueContract: string
+  interestedIn: string[]
+  documentsAvailable: string[]
   repaymentSource: string
   sponsorEquityAvailable: string
   documentsReady: string
@@ -35,8 +39,12 @@ export const INITIAL_INQUIRY_FORM: InquiryPayload = {
   projectName: '',
   sector: '',
   totalProjectSize: '',
+  estimatedFundingRequirement: '',
   projectStage: '',
   governmentSupportAvailable: '',
+  offtakeOrRevenueContract: '',
+  interestedIn: [],
+  documentsAvailable: [],
   repaymentSource: '',
   sponsorEquityAvailable: '',
   documentsReady: '',
@@ -59,8 +67,10 @@ const FIELD_LIMITS: Partial<Record<keyof InquiryPayload, number>> = {
   projectName: 180,
   sector: 120,
   totalProjectSize: 120,
+  estimatedFundingRequirement: 120,
   projectStage: 120,
   governmentSupportAvailable: 40,
+  offtakeOrRevenueContract: 40,
   repaymentSource: 400,
   sponsorEquityAvailable: 40,
   documentsReady: 40,
@@ -77,6 +87,15 @@ function cleanSingleLine(value: unknown) {
 
 function cleanBoolean(value: unknown) {
   return value === true
+}
+
+function cleanStringArray(value: unknown) {
+  if (!Array.isArray(value)) return []
+
+  return value
+    .map((item) => cleanSingleLine(item))
+    .filter(Boolean)
+    .slice(0, 20)
 }
 
 function cleanMultiline(value: unknown) {
@@ -112,8 +131,12 @@ export function normalizeInquiryPayload(input: Partial<InquiryPayload>): Inquiry
     projectName: cleanSingleLine(input.projectName),
     sector: cleanSingleLine(input.sector),
     totalProjectSize: cleanSingleLine(input.totalProjectSize),
+    estimatedFundingRequirement: cleanSingleLine(input.estimatedFundingRequirement),
     projectStage: cleanSingleLine(input.projectStage),
     governmentSupportAvailable: cleanSingleLine(input.governmentSupportAvailable).toLowerCase(),
+    offtakeOrRevenueContract: cleanSingleLine(input.offtakeOrRevenueContract).toLowerCase(),
+    interestedIn: cleanStringArray(input.interestedIn),
+    documentsAvailable: cleanStringArray(input.documentsAvailable),
     repaymentSource: cleanSingleLine(input.repaymentSource),
     sponsorEquityAvailable: cleanSingleLine(input.sponsorEquityAvailable).toLowerCase(),
     documentsReady: cleanSingleLine(input.documentsReady).toLowerCase(),
@@ -164,22 +187,26 @@ export function validateInquiryPayload(input: Partial<InquiryPayload>) {
     validateMaxLength(errors, 'phone', data.phone)
   }
 
-  if (!data.projectName) {
-    errors.projectName = 'Project name is required.'
-  } else {
+  if (data.projectName) {
     validateMaxLength(errors, 'projectName', data.projectName)
   }
 
   if (!data.sector) {
-    errors.sector = 'Sector is required.'
+    errors.sector = 'Project type is required.'
   } else {
     validateMaxLength(errors, 'sector', data.sector)
   }
 
   if (!data.totalProjectSize) {
-    errors.totalProjectSize = 'Total project size is required.'
+    errors.totalProjectSize = 'Project size or capacity is required.'
   } else {
     validateMaxLength(errors, 'totalProjectSize', data.totalProjectSize)
+  }
+
+  if (!data.estimatedFundingRequirement) {
+    errors.estimatedFundingRequirement = 'Estimated funding requirement is required.'
+  } else {
+    validateMaxLength(errors, 'estimatedFundingRequirement', data.estimatedFundingRequirement)
   }
 
   if (!data.projectStage) {
@@ -189,28 +216,30 @@ export function validateInquiryPayload(input: Partial<InquiryPayload>) {
   }
 
   if (!data.governmentSupportAvailable) {
-    errors.governmentSupportAvailable = 'Please indicate whether government support documents are available.'
+    errors.governmentSupportAvailable = 'Please indicate whether the project has government support.'
   } else {
     validateMaxLength(errors, 'governmentSupportAvailable', data.governmentSupportAvailable)
   }
 
-  if (!data.repaymentSource) {
-    errors.repaymentSource = 'Repayment source is required.'
-  } else if (data.repaymentSource.length < 10) {
-    errors.repaymentSource = 'Please provide a clearer repayment source.'
+  if (!data.offtakeOrRevenueContract) {
+    errors.offtakeOrRevenueContract = 'Please indicate whether the project has an offtake or revenue contract.'
   } else {
+    validateMaxLength(errors, 'offtakeOrRevenueContract', data.offtakeOrRevenueContract)
+  }
+
+  if (data.interestedIn.length === 0) {
+    errors.interestedIn = 'Select at least one area of interest.'
+  }
+
+  if (data.repaymentSource) {
     validateMaxLength(errors, 'repaymentSource', data.repaymentSource)
   }
 
-  if (!data.sponsorEquityAvailable) {
-    errors.sponsorEquityAvailable = 'Please indicate whether sponsor equity is available.'
-  } else {
+  if (data.sponsorEquityAvailable) {
     validateMaxLength(errors, 'sponsorEquityAvailable', data.sponsorEquityAvailable)
   }
 
-  if (!data.documentsReady) {
-    errors.documentsReady = 'Please indicate whether core documents are ready.'
-  } else {
+  if (data.documentsReady) {
     validateMaxLength(errors, 'documentsReady', data.documentsReady)
   }
 
@@ -223,7 +252,7 @@ export function validateInquiryPayload(input: Partial<InquiryPayload>) {
   }
 
   if (!data.confidentialityAccepted) {
-    errors.confidentialityAccepted = 'You must acknowledge the confidentiality and advisory notice.'
+    errors.confidentialityAccepted = 'You must acknowledge the advisory and regulated-services notice.'
   }
 
   if (data.sourcePage) validateMaxLength(errors, 'sourcePage', data.sourcePage)

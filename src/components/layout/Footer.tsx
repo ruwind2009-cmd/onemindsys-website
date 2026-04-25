@@ -2,12 +2,16 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { RWA_COMPLIANCE_DISCLAIMER } from '@/lib/site-content'
 
 const FOOTER_LINKS = {
   en: [
     { label: 'Home', href: '/' },
+    { label: 'RWA Structuring', href: '/rwa-structuring' },
+    { label: 'Stablecoin Settlement', href: '/stablecoin-settlement' },
+    { label: 'Project Finance', href: '/project-finance' },
+    { label: 'Tokenization Readiness', href: '/tokenization-readiness' },
     { label: 'Experience', href: '/projects' },
-    { label: 'About', href: '/about' },
     { label: 'Contact', href: '/support' },
   ],
   zh: [
@@ -18,10 +22,26 @@ const FOOTER_LINKS = {
   ],
 }
 
+const LIGHT_CHROME_ROUTES = new Set([
+  '/',
+  '/projects',
+  '/about',
+  '/support',
+  '/submit-project',
+  '/rwa-structuring',
+  '/stablecoin-settlement',
+  '/project-finance',
+  '/tokenization-readiness',
+])
+
+function usesLightChrome(pathname: string) {
+  return LIGHT_CHROME_ROUTES.has(pathname) || pathname.startsWith('/projects/')
+}
+
 export function Footer() {
   const pathname = usePathname()
   const isChinesePath = pathname.startsWith('/zh')
-  const isLightChrome = pathname === '/' || pathname === '/projects' || pathname === '/about' || pathname === '/support'
+  const isLightChrome = usesLightChrome(pathname)
   const links = isChinesePath ? FOOTER_LINKS.zh : FOOTER_LINKS.en
 
   return (
@@ -39,7 +59,10 @@ export function Footer() {
           <p className="mt-4 text-sm leading-7" style={{ color: isLightChrome ? '#5B6472' : 'rgba(232, 235, 239, 0.68)' }}>
             {isChinesePath
               ? '基础设施与能源投资的机构级顾问服务。'
-              : 'Institutional-grade advisory for infrastructure and energy investments.'}
+              : 'Web3-enabled project finance and RWA infrastructure advisory for real-world energy and infrastructure assets.'}
+          </p>
+          <p className="mt-4 text-xs leading-6" style={{ color: isLightChrome ? '#5B6472' : 'rgba(232, 235, 239, 0.56)' }}>
+            {RWA_COMPLIANCE_DISCLAIMER}
           </p>
         </div>
 

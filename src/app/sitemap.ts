@@ -6,6 +6,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     '',
+    '/rwa-structuring',
+    '/stablecoin-settlement',
+    '/project-finance',
+    '/tokenization-readiness',
+    '/submit-project',
+    '/web3-project-intake',
     '/about',
     '/pre-qualification',
     '/funding-structure',

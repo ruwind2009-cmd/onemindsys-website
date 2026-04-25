@@ -82,164 +82,151 @@ export default function BangladeshPowerProjectStructurePage() {
   }
 
   return (
-    <div className="page-shell page-shell--quiet">
+    <div className="project-profile">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      <div className="page-container">
-        <div className="page-hero page-hero--feature">
-          <div className="sec-label">Project Perspective</div>
-          <h1 className="page-title page-title--feature">
+      <div className="project-profile__container">
+        <header className="project-profile__hero">
+          <div className="project-profile__eyebrow">Project Perspective</div>
+          <h1 className="project-profile__title">
             Structuring a Utility-Scale Power Project for Full Financing — Bangladesh
           </h1>
-          <p className="page-subtitle">
+          <p className="project-profile__summary">
             This case illustrates how large power infrastructure projects in emerging markets are made bankable through aligned financing structures, sovereign support, and coordinated delivery frameworks.
           </p>
-          <div className="mt-8 grid gap-4 md:grid-cols-4">
+          <div className="project-profile__facts">
             {[
               ['Region', 'Bangladesh'],
               ['Project Type', 'Utility-Scale Power Project'],
               ['Page Focus', 'Financing Structure'],
               ['Page Mode', 'Project Perspective'],
             ].map(([label, value]) => (
-              <div
-                key={label}
-                className="rounded-[24px] border px-5 py-4"
-                style={{ borderColor: 'var(--color-border)', background: 'rgba(11, 18, 31, 0.74)' }}
-              >
-                <div
-                  className="text-xs font-semibold uppercase tracking-[0.16em]"
-                  style={{ color: 'var(--color-text3)' }}
-                >
-                  {label}
-                </div>
-                <div className="mt-2 text-sm leading-7" style={{ color: 'var(--color-text)' }}>
-                  {value}
-                </div>
+              <div key={label} className="project-profile__fact">
+                <div className="project-profile__fact-label">{label}</div>
+                <div className="project-profile__fact-value">{value}</div>
               </div>
             ))}
           </div>
-        </div>
+        </header>
 
-        <div className="page-section grid gap-5">
-          <section className="card-base card-role-info card-panel">
-            <h2 className="card-heading !mt-0">Project Context</h2>
-            <div className="mt-5 space-y-4">
+        <div className="project-profile__section project-profile__section-grid">
+          <section className="project-profile__card">
+            <h2 className="project-profile__card-title">Project Context</h2>
+            <div className="project-profile__copy-stack">
               {projectContextParagraphs.map((paragraph) => (
-                <p key={paragraph} className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
-                  {paragraph}
-                </p>
+                <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </section>
 
-          <section className="card-base card-role-info card-panel">
-            <h2 className="card-heading !mt-0">The Real Constraint</h2>
-            <div className="mt-5 space-y-4">
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+          <section className="project-profile__card">
+            <h2 className="project-profile__card-title">The Real Constraint</h2>
+            <div className="project-profile__copy-stack">
+              <p>
                 In projects of this scale, the primary constraint is not technical feasibility.
               </p>
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+              <p>
                 Instead, projects face challenges such as:
               </p>
             </div>
-            <div className="card-list mt-8">
+            <div className="project-profile__list">
               {realConstraintBullets.map((bullet) => (
-                <div key={bullet} className="card-list-item">
+                <div key={bullet} className="project-profile__list-item">
                   {bullet}
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+            <p className="project-profile__note">
               Without a properly structured framework, projects may stall before financial close.
             </p>
           </section>
 
-          <section className="card-base card-role-decision card-panel">
-            <div className="card-kicker">Key Statement</div>
-            <p className="card-heading !mt-4 !text-[2rem] md:!text-[2.4rem]">
+          <section className="project-profile__card project-profile__card--value">
+            <div className="project-profile__card-eyebrow">Key Statement</div>
+            <p className="project-profile__statement">
               The limiting factor is not engineering.
               <br />
               It is whether the project can be structured to meet financing expectations.
             </p>
           </section>
 
-          <section className="card-base card-role-info card-panel">
-            <h2 className="card-heading !mt-0">Typical Financing Structure</h2>
-            <div className="mt-5 space-y-4">
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+          <section className="project-profile__card">
+            <h2 className="project-profile__card-title">Typical Financing Structure</h2>
+            <div className="project-profile__copy-stack">
+              <p>
                 Successful utility-scale power projects often rely on a structured combination of:
               </p>
             </div>
-            <div className="card-list mt-8">
+            <div className="project-profile__list">
               {financingStructureBullets.map((bullet) => (
-                <div key={bullet} className="card-list-item">
+                <div key={bullet} className="project-profile__list-item">
                   {bullet}
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+            <p className="project-profile__note">
               These elements collectively enable capital to enter the project under acceptable risk conditions.
             </p>
           </section>
 
-          <section className="card-base card-role-info card-panel">
-            <h2 className="card-heading !mt-0">Why Structure Matters</h2>
-            <div className="mt-5 space-y-4">
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+          <section className="project-profile__card">
+            <h2 className="project-profile__card-title">Why Structure Matters</h2>
+            <div className="project-profile__copy-stack">
+              <p>
                 Financing is not a downstream activity.
               </p>
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+              <p>
                 Projects become viable only when:
               </p>
             </div>
-            <div className="card-list mt-8">
+            <div className="project-profile__list">
               {structureMattersBullets.map((bullet) => (
-                <div key={bullet} className="card-list-item">
+                <div key={bullet} className="project-profile__list-item">
                   {bullet}
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+            <p className="project-profile__note">
               Without this alignment, even technically feasible projects cannot progress.
             </p>
           </section>
 
-          <section className="card-base card-role-info card-panel">
-            <h2 className="card-heading !mt-0">What This Means for Project Sponsors</h2>
-            <div className="mt-5 space-y-4">
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+          <section className="project-profile__card">
+            <h2 className="project-profile__card-title">What This Means for Project Sponsors</h2>
+            <div className="project-profile__copy-stack">
+              <p>
                 For project sponsors and developers, this typically means:
               </p>
             </div>
-            <div className="card-list mt-8">
+            <div className="project-profile__list">
               {sponsorBullets.map((bullet) => (
-                <div key={bullet} className="card-list-item">
+                <div key={bullet} className="project-profile__list-item">
                   {bullet}
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+            <p className="project-profile__note">
               Projects that fail to address these factors often remain stalled despite strong underlying demand.
             </p>
           </section>
 
-          <section className="card-base card-role-info card-panel">
-            <h2 className="card-heading !mt-0">ONEMIND Perspective</h2>
-            <div className="mt-5 space-y-4">
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+          <section className="project-profile__card">
+            <h2 className="project-profile__card-title">ONEMIND Perspective</h2>
+            <div className="project-profile__copy-stack">
+              <p>
                 ONEMIND focuses on the part of projects where structure, financing readiness, and advancement logic must work together.
               </p>
-              <p className="text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+              <p>
                 Our work centers on:
               </p>
             </div>
-            <div className="card-list mt-8">
+            <div className="project-profile__list">
               {onemindBullets.map((bullet) => (
-                <div key={bullet} className="card-list-item">
+                <div key={bullet} className="project-profile__list-item">
                   {bullet}
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-base leading-8" style={{ color: 'var(--color-text2)' }}>
+            <p className="project-profile__note">
               We do not treat financing as a separate step.
               <br />
               We treat it as part of the project&apos;s core structure.
@@ -247,21 +234,29 @@ export default function BangladeshPowerProjectStructurePage() {
           </section>
         </div>
 
-        <div className="page-section card-base card-role-solution page-callout">
-          <div className="page-callout-title">Submit a Comparable Project for Review</div>
-          <p className="card-copy !mt-4" style={{ color: 'var(--color-text)' }}>
+        <section className="project-profile__section project-profile__disclosure">
+          <div className="project-profile__card-eyebrow">Advisory Disclosure</div>
+          <p>
+            These examples represent advisory experience and structuring logic. They do not imply token issuance,
+            securities offering, custody activity, payment licensing, or completed regulated transactions.
+          </p>
+        </section>
+
+        <section className="project-profile__section project-profile__cta">
+          <div className="project-profile__cta-title">Submit a Comparable Project for Review</div>
+          <p className="project-profile__card-copy project-profile__card-copy--wide">
             If your project involves infrastructure scale, financing structure, and government-linked counterparties, use the
             inquiry page to start a structured suitability review.
           </p>
-          <div className="button-row mt-6">
-            <Link href="/support#inquiry-form" className="btn-primary">
+          <div className="project-profile__actions">
+            <Link href="/support#inquiry-form" className="project-profile__button project-profile__button--primary">
               Start Project Inquiry
             </Link>
-            <Link href="/pre-qualification" className="btn-secondary">
+            <Link href="/pre-qualification" className="project-profile__button project-profile__button--secondary">
               Review Qualification Criteria
             </Link>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   )

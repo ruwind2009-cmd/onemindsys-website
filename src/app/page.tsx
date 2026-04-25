@@ -1,18 +1,13 @@
 import { InstitutionalHome } from '@/components/site/InstitutionalHome'
 import { buildPageMetadata } from '@/lib/site-metadata'
+import { WEB3_PAGE_KEYWORDS } from '@/lib/site-content'
 
 export const metadata = buildPageMetadata({
-  title: 'Institutional Advisory for Infrastructure and Energy Investments',
+  title: 'Project Finance Advisory for RWA-ready Infrastructure',
   description:
-    'Institutional-grade advisory for infrastructure and energy investments across project structuring, capital advisory, and investment readiness.',
+    'ONEMIND helps real-world energy and infrastructure projects become financeable, RWA-ready, and prepared for stablecoin-enabled settlement and institutional capital review.',
   path: '/',
-  keywords: [
-    'infrastructure advisory',
-    'energy investment advisory',
-    'project structuring',
-    'capital advisory',
-    'investment readiness',
-  ],
+  keywords: WEB3_PAGE_KEYWORDS,
 })
 
 export default function HomePage() {

@@ -3,7 +3,7 @@ import { IBM_Plex_Mono, Manrope, Sora } from 'next/font/google'
 import '../styles/globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { SITE_URL } from '@/lib/site-content'
+import { SITE_URL, WEB3_PAGE_KEYWORDS } from '@/lib/site-content'
 
 const display = Sora({
   subsets: ['latin'],
@@ -26,24 +26,16 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'ONEMIND | Institutional Advisory for Infrastructure and Energy Investments',
+    default: 'ONEMIND | Project Finance Advisory for RWA-ready Infrastructure',
     template: '%s | ONEMIND',
   },
   description:
-    'ONEMIND provides institutional-grade advisory for infrastructure and energy investments, from project structuring to capital readiness.',
-  keywords: [
-    'ONEMIND',
-    'infrastructure advisory',
-    'energy investment advisory',
-    'project structuring',
-    'capital advisory',
-    'investment readiness',
-    'infrastructure investment advisory',
-  ],
+    'ONEMIND helps real-world energy and infrastructure projects become financeable, RWA-ready, and prepared for stablecoin-enabled settlement and institutional capital review.',
+  keywords: ['ONEMIND', ...WEB3_PAGE_KEYWORDS],
   openGraph: {
-    title: 'ONEMIND | Institutional Advisory for Infrastructure and Energy Investments',
+    title: 'ONEMIND | Project Finance Advisory for RWA-ready Infrastructure',
     description:
-      'Institutional-grade advisory for infrastructure and energy investments across structuring, capital advisory, and investment readiness.',
+      'Project finance first, with Web3/RWA/stablecoin settlement capability for real-world energy and infrastructure assets.',
     type: 'website',
     url: SITE_URL,
     siteName: 'ONEMIND',
@@ -58,9 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ONEMIND | Institutional Advisory for Infrastructure and Energy Investments',
+    title: 'ONEMIND | Project Finance Advisory for RWA-ready Infrastructure',
     description:
-      'Institutional-grade advisory for infrastructure and energy investments across structuring, capital advisory, and investment readiness.',
+      'ONEMIND helps real-world energy and infrastructure projects become financeable, RWA-ready, and prepared for stablecoin-enabled settlement and institutional capital review.',
     images: ['/images/site/real/home-thermal-night.jpeg'],
   },
 }

@@ -8,9 +8,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 const NAV_LINKS = {
   en: [
     { label: 'Home', href: '/', match: (pathname: string) => pathname === '/' },
+    { label: 'RWA Structuring', href: '/rwa-structuring', match: (pathname: string) => pathname === '/rwa-structuring' },
+    { label: 'Stablecoin Settlement', href: '/stablecoin-settlement', match: (pathname: string) => pathname === '/stablecoin-settlement' },
+    { label: 'Project Finance', href: '/project-finance', match: (pathname: string) => pathname === '/project-finance' },
+    { label: 'Tokenization Readiness', href: '/tokenization-readiness', match: (pathname: string) => pathname === '/tokenization-readiness' },
     { label: 'Experience', href: '/projects', match: (pathname: string) => pathname.startsWith('/projects') },
-    { label: 'About', href: '/about', match: (pathname: string) => pathname === '/about' },
-    { label: 'Contact', href: '/support', match: (pathname: string) => pathname === '/support' },
+    { label: 'Contact', href: '/support', match: (pathname: string) => pathname === '/support' || pathname === '/submit-project' },
   ],
   zh: [
     { label: '首页', href: '/zh', match: (pathname: string) => pathname === '/zh' },
@@ -20,10 +23,26 @@ const NAV_LINKS = {
   ],
 }
 
+const LIGHT_CHROME_ROUTES = new Set([
+  '/',
+  '/projects',
+  '/about',
+  '/support',
+  '/submit-project',
+  '/rwa-structuring',
+  '/stablecoin-settlement',
+  '/project-finance',
+  '/tokenization-readiness',
+])
+
+function usesLightChrome(pathname: string) {
+  return LIGHT_CHROME_ROUTES.has(pathname) || pathname.startsWith('/projects/')
+}
+
 export function Header() {
   const pathname = usePathname()
   const isChinesePath = pathname.startsWith('/zh')
-  const isLightChrome = pathname === '/' || pathname === '/projects' || pathname === '/about' || pathname === '/support'
+  const isLightChrome = usesLightChrome(pathname)
   const navLinks = isChinesePath ? NAV_LINKS.zh : NAV_LINKS.en
   const homeHref = isChinesePath ? '/zh' : '/'
   const [scrolled, setScrolled] = useState(false)
@@ -50,7 +69,7 @@ export function Header() {
         backdropFilter: 'blur(20px)',
       }}
     >
-      <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
+      <nav className="mx-auto flex h-[72px] max-w-[92rem] items-center justify-between px-4 py-4 sm:px-6">
         <Link href={homeHref} className="shrink-0">
           <div className="text-[0.95rem] font-semibold tracking-[0.28em]" style={{ color: isLightChrome ? '#111827' : '#f4f2ec' }}>
             ONEMIND
@@ -59,7 +78,7 @@ export function Header() {
             className="mt-1 text-[10px] uppercase tracking-[0.26em]"
             style={{ color: isLightChrome ? '#5B6472' : 'rgba(232, 235, 239, 0.52)' }}
           >
-            {isChinesePath ? '基础设施与能源顾问' : 'Infrastructure & Energy Advisory'}
+            {isChinesePath ? '基础设施与能源顾问' : 'Web3 Project Finance Advisory'}
           </div>
         </Link>
 
@@ -70,7 +89,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative rounded-full px-3.5 py-2 text-sm font-semibold transition-colors"
+                className="relative rounded-full px-2.5 py-2 text-[13px] font-semibold transition-colors"
                 style={{ color: active ? (isLightChrome ? '#111827' : '#f4f2ec') : isLightChrome ? '#5B6472' : 'rgba(232, 235, 239, 0.7)' }}
               >
                 {link.label}
@@ -89,15 +108,15 @@ export function Header() {
 
         <div className="hidden items-center gap-3 xl:flex">
           <Link
-            href="/support#inquiry-form"
-            className="inline-flex min-h-[2.85rem] items-center rounded-full border px-4 text-sm font-semibold transition-colors"
+            href="/submit-project"
+            className="inline-flex min-h-[2.85rem] items-center rounded-full border px-4 text-[13px] font-semibold transition-colors"
             style={{
               borderColor: isLightChrome ? '#1E2A38' : 'rgba(244, 242, 236, 0.2)',
               background: isLightChrome ? '#1E2A38' : 'rgba(244, 242, 236, 0.94)',
               color: isLightChrome ? '#F9FAFB' : '#111318',
             }}
           >
-            {isChinesePath ? '发起讨论' : 'Start a Discussion'}
+            {isChinesePath ? '发起讨论' : 'Submit Project'}
           </Link>
         </div>
 
@@ -142,7 +161,7 @@ export function Header() {
                 </Link>
               ))}
               <Link
-                href="/support#inquiry-form"
+                href="/submit-project"
                 onClick={() => setMenuOpen(false)}
                 className="mt-3 inline-flex min-h-[3rem] w-full items-center justify-center rounded-full border text-sm font-semibold"
                 style={{
@@ -151,7 +170,7 @@ export function Header() {
                   color: isLightChrome ? '#F9FAFB' : '#111318',
                 }}
               >
-                {isChinesePath ? '发起讨论' : 'Start a Discussion'}
+                {isChinesePath ? '发起讨论' : 'Submit Project'}
               </Link>
             </div>
           </motion.div>

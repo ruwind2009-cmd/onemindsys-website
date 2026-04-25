@@ -1,5 +1,24 @@
 export const SITE_URL = 'https://onemindsys.com'
 
+export const GLOBAL_POSITIONING =
+  'Web3-enabled project finance and RWA infrastructure advisory for real-world energy and infrastructure assets.'
+
+export const RWA_COMPLIANCE_DISCLAIMER =
+  'ONEMIND provides project finance, structuring, documentation, and strategic advisory support. ONEMIND does not issue tokens, sell securities, provide custody, operate a payment institution, or provide legal, tax, investment, or regulated financial advice. Any RWA tokenization, stablecoin settlement, securities issuance, custody, or regulated activity must be conducted through appropriately licensed legal, financial, custody, compliance, and regulated partners.'
+
+export const WEB3_PAGE_KEYWORDS = [
+  'RWA project finance',
+  'Web3 infrastructure finance',
+  'stablecoin settlement',
+  'tokenized real world assets',
+  'energy project finance',
+  'infrastructure advisory',
+  'tokenization readiness',
+  'cross-border project financing',
+  'smart contract cash flow',
+  'real asset financing',
+]
+
 export type ContentSection = {
   title: string
   paragraphs: string[]
@@ -344,69 +363,155 @@ export const insights: InsightArticle[] = [
 
 export const projects: ProjectEntry[] = [
   {
-    slug: 'power-infrastructure-project-in-iraq',
-    title: 'Power Infrastructure Project in Iraq',
-    description: 'A short project summary showing ONEMIND experience in a complex power infrastructure environment.',
-    summary: 'Power infrastructure work in a complex market with delivery pressure and infrastructure constraints.',
+    slug: '1000mw-solar-pv-project-egypt',
+    title: '1,000 MW Solar PV Project — Egypt',
+    description:
+      'Utility-scale renewable energy project structuring, technical-financial feasibility review, and capital-readiness preparation for institutional financing.',
+    summary:
+      'Utility-scale renewable energy project structuring, technical-financial feasibility review, and capital-readiness preparation for institutional financing.',
+    region: 'Egypt',
+    projectType: 'Utility-Scale Solar PV',
+    roleType: 'Technical-Financial Structuring',
+    role:
+      'Utility-scale renewable energy project structuring, technical-financial feasibility review, and capital-readiness preparation for institutional financing.',
+    value:
+      'Illustrates the documentation, feasibility, model discipline, and risk allocation work required before any RWA or Web3-enabled capital structure can be considered.',
+    keywords: ['Egypt solar project', 'utility-scale solar', 'RWA readiness', 'project finance'],
+    sections: [
+      {
+        title: 'Context',
+        paragraphs: ['The project reflected a utility-scale solar PV development where energy yield, EPC scope, land, permits, grid assumptions, and financing logic needed to be assessed together.'],
+      },
+      {
+        title: 'Structuring Focus',
+        paragraphs: ['The work centered on technical-financial feasibility, bankability review, capital-readiness preparation, and the investor-facing logic required for institutional review.'],
+      },
+      {
+        title: 'Web3/RWA Relevance',
+        paragraphs: ['A project of this type can only be considered for RWA preparation after the underlying asset boundary, cash flow model, legal structure, and risk allocation are credible enough for finance review.'],
+      },
+      {
+        title: 'Disclosure',
+        paragraphs: ['This example represents advisory experience and structuring logic. It does not imply token issuance, securities offering, payment processing, custody activity, or completed regulated transaction execution.'],
+      },
+    ],
+    relatedLinks: [
+      { href: '/rwa-structuring', label: 'View RWA Structuring', description: 'See how real infrastructure assets are prepared before tokenization is considered.' },
+      { href: '/submit-project', label: 'Submit Project', description: 'Submit an energy or infrastructure project for preliminary review.' },
+    ],
+  },
+  {
+    slug: '4gw-renewable-energy-pipeline-middle-east',
+    title: '4 GW Renewable Energy Pipeline — Middle East',
+    description:
+      'Portfolio-level renewable energy planning, equipment strategy, cost optimization, and financing logic across a multi-project development pipeline.',
+    summary:
+      'Portfolio-level renewable energy planning, equipment strategy, cost optimization, and financing logic across a multi-project development pipeline.',
+    region: 'Middle East',
+    projectType: 'Renewable Energy Portfolio',
+    roleType: 'Portfolio Structuring',
+    role:
+      'Portfolio-level renewable energy planning, equipment strategy, cost optimization, and financing logic across a multi-project development pipeline.',
+    value:
+      'Shows how multi-asset pipelines require consistent documentation, risk categorization, financing logic, and disclosure standards before investor or RWA review.',
+    keywords: ['Middle East renewable energy', 'renewable pipeline', 'portfolio finance', 'RWA infrastructure'],
+    sections: [
+      {
+        title: 'Context',
+        paragraphs: ['The pipeline required portfolio-level planning across renewable assets, equipment strategy, development sequencing, and capital logic.'],
+      },
+      {
+        title: 'Structuring Focus',
+        paragraphs: ['The work emphasized cost optimization, project categorization, financing-readiness logic, and consistency across a multi-project development program.'],
+      },
+      {
+        title: 'Web3/RWA Relevance',
+        paragraphs: ['Portfolio-scale RWA preparation depends on project-by-project verification, standardized reporting, consistent cash flow assumptions, and clear asset boundaries.'],
+      },
+      {
+        title: 'Disclosure',
+        paragraphs: ['This example represents advisory experience and structuring logic. It does not imply token issuance, securities offering, payment processing, custody activity, or completed regulated transaction execution.'],
+      },
+    ],
+    relatedLinks: [
+      { href: '/project-finance', label: 'View Project Finance', description: 'Understand how traditional project finance connects with Web3-enabled overlays.' },
+      { href: '/submit-project', label: 'Submit Project', description: 'Submit a renewable energy pipeline or infrastructure asset for review.' },
+    ],
+  },
+  {
+    slug: 'infrastructure-development-kuwait',
+    title: 'Infrastructure Development — Kuwait',
+    description:
+      'Commercial and technical structuring support for infrastructure-related investment and supply-chain financing review.',
+    summary:
+      'Commercial and technical structuring support for infrastructure-related investment and supply-chain financing review.',
+    region: 'Kuwait',
+    projectType: 'Infrastructure Development',
+    roleType: 'Commercial and Technical Structuring',
+    role:
+      'Commercial and technical structuring support for infrastructure-related investment and supply-chain financing review.',
+    value:
+      'Demonstrates the importance of supplier payment logic, documentation quality, cost review, and counterparty risk framing in infrastructure finance.',
+    keywords: ['Kuwait infrastructure', 'supply-chain financing', 'settlement architecture', 'project documentation'],
+    sections: [
+      {
+        title: 'Context',
+        paragraphs: ['The work involved infrastructure-related investment conditions where commercial terms, technical delivery logic, and supply-chain financing questions needed alignment.'],
+      },
+      {
+        title: 'Structuring Focus',
+        paragraphs: ['The advisory lens focused on commercial viability, technical delivery requirements, supplier-payment visibility, and financing review logic.'],
+      },
+      {
+        title: 'Web3/RWA Relevance',
+        paragraphs: ['Stablecoin-enabled settlement design may be useful in similar cross-border supplier and EPC payment contexts, but only inside a compliant legal, banking, tax, and KYC/AML framework.'],
+      },
+      {
+        title: 'Disclosure',
+        paragraphs: ['This example represents advisory experience and structuring logic. It does not imply token issuance, securities offering, payment processing, custody activity, or completed regulated transaction execution.'],
+      },
+    ],
+    relatedLinks: [
+      { href: '/stablecoin-settlement', label: 'View Settlement Framework', description: 'Review how stablecoin settlement can be mapped for project finance workflows.' },
+      { href: '/submit-project', label: 'Submit Project', description: 'Submit an infrastructure project for preliminary review.' },
+    ],
+  },
+  {
+    slug: 'power-generation-project-iraq',
+    title: 'Power Generation Project — Iraq',
+    description:
+      'Bankability-oriented feasibility, tariff logic, EPC cost review, sovereign risk framing, and investor-facing project finance documentation.',
+    summary:
+      'Bankability-oriented feasibility, tariff logic, EPC cost review, sovereign risk framing, and investor-facing project finance documentation.',
     region: 'Iraq',
-    projectType: 'Power Project',
-    roleType: 'Project Coordination',
-    role: 'Supported project structuring and advancement in a delivery-sensitive power context.',
-    value: 'Showed how infrastructure readiness and execution logic shape project progress in complex environments.',
-    keywords: ['Iraq power project', 'complex market', 'power infrastructure'],
+    projectType: 'Power Generation',
+    roleType: 'Bankability Review',
+    role:
+      'Bankability-oriented feasibility, tariff logic, EPC cost review, sovereign risk framing, and investor-facing project finance documentation.',
+    value:
+      'Shows how government risk, tariff logic, offtake visibility, EPC cost, and repayment logic need to be framed before institutional or Web3-enabled capital review.',
+    keywords: ['Iraq power generation', 'sovereign risk', 'tariff logic', 'project finance documentation'],
     sections: [
-      { title: 'Context', paragraphs: ['The project sat in a market where infrastructure conditions and execution discipline both mattered.'] },
-      { title: 'Challenge', paragraphs: ['Project progress depended on aligning local constraints, system logic, and delivery reality.'] },
-      { title: 'Our Role', paragraphs: ['We supported the work through project thinking grounded in power infrastructure conditions and advancement logic.'] },
-      { title: 'Outcome', paragraphs: ['The experience reinforced how structure and delivery awareness affect project viability in complex markets.'] },
+      {
+        title: 'Context',
+        paragraphs: ['The project sat in a power generation context where government-linked risk, tariff assumptions, EPC cost, and repayment source required disciplined framing.'],
+      },
+      {
+        title: 'Structuring Focus',
+        paragraphs: ['The work emphasized bankability-oriented feasibility, tariff logic, EPC cost review, sovereign risk framing, and investor-facing project finance documentation.'],
+      },
+      {
+        title: 'Web3/RWA Relevance',
+        paragraphs: ['Government-backed infrastructure obligations may require asset verification, legal enforceability, payment waterfall clarity, and regulated execution partners before any RWA structure can be considered.'],
+      },
+      {
+        title: 'Disclosure',
+        paragraphs: ['This example represents advisory experience and structuring logic. It does not imply token issuance, securities offering, payment processing, custody activity, or completed regulated transaction execution.'],
+      },
     ],
     relatedLinks: [
-      { href: '/funding-structure', label: 'View Funding Structure', description: 'See how structure design and execution controls connect to project work.' },
-      { href: '/support#inquiry-form', label: 'Start Project Inquiry', description: 'Start with the market, constraint, or execution issue that matters most.' },
-    ],
-  },
-  {
-    slug: 'utility-scale-solar-pv-project',
-    title: 'Utility-Scale Solar PV Project',
-    description: 'A short project summary showing ONEMIND experience in renewable energy development support.',
-    summary: 'Renewable energy development shaped by technical configuration, readiness, and delivery sequencing.',
-    region: 'Renewable Energy Market',
-    projectType: 'Renewable Project',
-    roleType: 'Structuring',
-    role: 'Supported project thinking around structure, readiness, and staged advancement for large-scale solar development.',
-    value: 'Showed how renewable projects need technical logic and financing readiness to move beyond concept. ',
-    keywords: ['solar PV project', 'renewable development', 'financing readiness'],
-    sections: [
-      { title: 'Context', paragraphs: ['The project involved renewable energy development where staged progress and readiness mattered early.'] },
-      { title: 'Challenge', paragraphs: ['The work required alignment between technical setup, development logic, and project progression.'] },
-      { title: 'Our Role', paragraphs: ['We supported the project through infrastructure-led thinking tied to readiness and advancement.'] },
-      { title: 'Outcome', paragraphs: ['The experience strengthened our view that renewable projects move faster when structure and financing logic are addressed early.'] },
-    ],
-    relatedLinks: [
-      { href: '/funding-structure', label: 'View Funding Structure', description: 'See where renewable projects fit inside our structuring model.' },
-      { href: '/support#inquiry-form', label: 'Start Project Inquiry', description: 'Start with the readiness issue shaping your next stage.' },
-    ],
-  },
-  {
-    slug: 'bess-for-critical-infrastructure',
-    title: 'BESS for Critical Infrastructure',
-    description: 'A short project summary showing ONEMIND experience in resilience-focused power systems.',
-    summary: 'Critical infrastructure power work where reliability, backup logic, and operational continuity mattered.',
-    region: 'Critical Infrastructure Environment',
-    projectType: 'Industrial Power Project',
-    roleType: 'Infrastructure Planning',
-    role: 'Supported project thinking around resilience, backup power, and practical advancement in a critical environment.',
-    value: 'Showed how dependable power systems become a defining constraint for operational continuity and project viability.',
-    keywords: ['BESS', 'critical infrastructure', 'industrial power'],
-    sections: [
-      { title: 'Context', paragraphs: ['The project involved a critical environment where dependable power systems were central to operations.'] },
-      { title: 'Challenge', paragraphs: ['Reliability requirements had to be translated into workable backup, resilience, and delivery decisions.'] },
-      { title: 'Our Role', paragraphs: ['We supported the work with power infrastructure thinking tied to continuity, readiness, and advancement.'] },
-      { title: 'Outcome', paragraphs: ['The experience confirmed that resilience planning is often a core project question, not a technical afterthought.'] },
-    ],
-    relatedLinks: [
-      { href: '/projects', label: 'View Projects', description: 'Review more short project summaries across power and infrastructure contexts.' },
-      { href: '/support#inquiry-form', label: 'Start Project Inquiry', description: 'Start with the reliability or execution constraint facing the project.' },
+      { href: '/tokenization-readiness', label: 'View Readiness Review', description: 'See the pre-tokenization review logic for real infrastructure projects.' },
+      { href: '/submit-project', label: 'Submit Project', description: 'Submit a power or infrastructure project for review.' },
     ],
   },
 ]
@@ -416,7 +521,13 @@ export function getInsightBySlug(slug: string) {
 }
 
 export function getProjectBySlug(slug: string) {
-  return projects.find((item) => item.slug === slug)
+  const aliases: Record<string, string> = {
+    'power-infrastructure-project-in-iraq': 'power-generation-project-iraq',
+    'utility-scale-solar-pv-project': '1000mw-solar-pv-project-egypt',
+    'bess-for-critical-infrastructure': 'infrastructure-development-kuwait',
+  }
+
+  return projects.find((item) => item.slug === (aliases[slug] ?? slug))
 }
 
 export const zhInsights: ZhInsightArticle[] = [

@@ -5,9 +5,9 @@ import { projects } from '@/lib/site-content'
 import { buildPageMetadata } from '@/lib/site-metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Selected Project Contexts',
+  title: 'Selected Experience',
   description:
-    'Selected project contexts showing how ONEMIND approaches bankability, financing structure, and execution discipline across infrastructure and energy projects.',
+    'Selected ONEMIND advisory experience reframed around bankability, RWA readiness, stablecoin settlement context, and institutional project finance discipline.',
   path: '/projects',
   keywords: [
     'project finance case studies',
@@ -23,15 +23,15 @@ export default function ProjectsPage() {
       <div className="internal-page__container">
         <InternalPageHeader
           eyebrow="Experience"
-          title="Selected track record across infrastructure and energy projects"
-          description="Representative engagements reflecting project structuring, readiness assessment, and execution alignment across institutional project contexts."
+          title="Selected advisory experience across real infrastructure assets"
+          description="Representative engagements reflecting project finance structuring, bankability review, technical-financial integration, and RWA-readiness logic for real-world assets."
         />
 
         <section className="internal-page__section">
           <InternalSectionHeader
             eyebrow="Selected Experience"
             title="Track record presented with the discipline of an advisory mandate list."
-            description="Each entry is framed around geography, mandate type, and the role performed."
+            description="Each entry is framed around geography, mandate type, project-finance logic, and relevance to Web3-enabled capital readiness."
           />
 
           <div className="track-record">
@@ -60,15 +60,21 @@ export default function ProjectsPage() {
         <section className="internal-page__section internal-page__section--soft">
           <div className="internal-cta">
             <div>
-              <div className="internal-page__eyebrow">Project Inquiry</div>
-              <h2 className="internal-section__title">Discuss a comparable project situation.</h2>
+              <div className="internal-page__eyebrow">Advisory Disclosure</div>
+              <h2 className="internal-section__title">
+                These examples represent advisory experience and structuring logic.
+              </h2>
+              <p className="internal-section__description">
+                They do not imply token issuance, securities offering, custody activity, payment licensing, or completed
+                regulated transactions.
+              </p>
             </div>
             <div className="internal-actions">
-              <Link href="/support#inquiry-form" className="institutional-button institutional-button--primary">
-                Start a Discussion
+              <Link href="/submit-project" className="institutional-button institutional-button--primary">
+                Submit Project
               </Link>
-              <Link href="/documentation-checklist" className="institutional-button institutional-button--secondary">
-                Review Checklist
+              <Link href="/rwa-structuring" className="institutional-button institutional-button--secondary">
+                RWA Structuring
               </Link>
             </div>
           </div>

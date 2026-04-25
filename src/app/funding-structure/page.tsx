@@ -114,9 +114,8 @@ export default function FundingStructurePage() {
 
         <section className="institutional-section">
           <DisclosureNotice title="Website Disclosure">
-            No statement on this website constitutes a funding commitment, guarantee, underwriting promise, or investment
-            solicitation. Advisory work is always subject to diligence, legal review, compliance procedures, and executed
-            agreements by the relevant parties.
+            Website materials are advisory and informational only. Project outcomes depend on diligence, legal review,
+            compliance procedures, counterparty approval, and executed agreements by the relevant parties.
           </DisclosureNotice>
         </section>
 
